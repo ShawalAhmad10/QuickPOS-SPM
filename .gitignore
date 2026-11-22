@@ -1,0 +1,27 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+.auth/
+
+# OS/editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Caches/dependencies (not required for this project)
+node_modules/
+vendor/
+.cache/
+coverage/
+*.log
+
+# Local generated deliverables
+build/
+dist/
+submission-output/

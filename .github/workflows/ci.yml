@@ -1,0 +1,49 @@
+name: QuickPOS CI
+
+on:
+  push:
+    branches:
+      - main
+      - 'feature/**'
+      - 'bugfix/**'
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  php-quality:
+    name: PHP lint and validation tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Show PHP version
+        run: php --version
+
+      - name: Lint all PHP files
+        shell: bash
+        run: |
+          set -euo pipefail
+          mapfile -d '' php_files < <(find public src tests -type f -name '*.php' -print0 | sort -z)
+          if (( ${#php_files[@]} == 0 )); then
+            echo 'No PHP files found to lint.' >&2
+            exit 1
+          fi
+          for file in "${php_files[@]}"; do
+            php -l "$file"
+          done
+
+      - name: Run contact validation tests
+        run: php tests/run.php
