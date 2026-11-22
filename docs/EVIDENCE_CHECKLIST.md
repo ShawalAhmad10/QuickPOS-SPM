@@ -12,13 +12,13 @@
 | B6 | Actual bugs if present, burndown/sprint reports, retrospectives | NO | — |
 | C7 | Public repository and stable baseline: https://github.com/ShawalAhmad10/QuickPOS-SPM . Jira development link still blocked. | PARTIAL | 2026-11-22 |
 | C8 | Baseline commit `fe10bd3` and real `feature/project-documentation` branch. Jira keys/linkage unavailable. | PARTIAL | 2026-11-22 |
-| C9 | Four meaningful merged PRs, real review feedback/approval, CI | NO | — |
+| C9 | Open documentation PR with passing CI: https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1 and run 45044977813. No review or merge claimed; four merged PR requirement remains blocked. | PARTIAL | 2026-11-22 |
 | C10 | Factual work division; documented solo exception | NO | — |
 | D11 | Workflow plus successful main run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754 | YES | 2026-11-22 |
 | D12 | All 17 PHP files linted successfully locally and in run 45043988754. | YES | 2026-11-22 |
 | D13 | `tests/run.php`: 13/13 passed locally and in run 45043988754; failure-count/nonzero-exit handling is implemented. | YES | 2026-11-22 |
 | D14 | Actual failed run + corrected passing run + explanation | NO | — |
-| E15 | Source ZIP + PDF/Word labeled Parts A–E, Tasks #1–#16; URLs | NO | — |
+| E15 | Draft PDF at `output/pdf/QuickPOS_Evidence_Report.pdf`; source ZIP and exact viva notes generated locally after the final branch commit. Not submitted. | PARTIAL | 2026-11-22 |
 | E16 | Live viva: verification done by instructor during evaluation | NO | — |
 
 ## Recommended physical evidence layout (create when evidence exists)

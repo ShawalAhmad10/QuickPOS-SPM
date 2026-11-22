@@ -233,7 +233,7 @@ def build():
         ("6", "Bugs/reports/retros", "NOT VERIFIED", "Future Jira events"),
         ("7", "Repository/integration", "PARTIAL", "Public repo live; Jira integration absent"),
         ("8", "Branches/commits", "PARTIAL", "Truthful baseline and real docs branch; no Jira keys"),
-        ("9", "PRs/reviews", "BLOCKED", "Independent review approval required"),
+        ("9", "PRs/reviews", "BLOCKED", "PR 1 is open and green; independent review required"),
         ("10", "Participation", "BLOCKED", "Solo exception not confirmed"),
         ("11", "CI workflow", "PASS", "Remote run 45043988754 succeeded"),
         ("12", "PHP lint", "PASS", "17/17 files"),
@@ -284,15 +284,15 @@ def build():
     story.extend(evidence_image("06-thank-you-1280.png", "Figure A6. Honest one-time confirmation after valid input.", 110 * mm))
     story.append(PageBreak())
 
-    story.extend([p("Part B - Jira Scrum planning and execution", "Part")])
-    story.extend([p("Task 4 - Jira setup, Epics and backlog - BLOCKED", "Task"), p("Seven Epics, fifteen Stories, technical Tasks and Subtasks are prepared in the backlog and import CSV. No Jira keys or URLs exist because the Atlassian integration is not installed/connected and no authorized Jira site is available.")])
+    story.extend([p("Part B - Jira Scrum", "Part")])
+    story.extend([p("Task 4 - Jira backlog - BLOCKED", "Task"), p("Seven Epics, fifteen Stories, technical Tasks and Subtasks are prepared in the backlog and import CSV. No Jira keys or URLs exist because the Atlassian integration is not installed/connected and no authorized Jira site is available.")])
     story.extend([p("Task 5 - Two sprints - PARTIAL", "Task"), p("Sprint 1 is fixed for 23-29 November 2026 and Sprint 2 for 30 November-6 December 2026. Goals, candidate allocation and report templates are ready. Neither future sprint is claimed started or completed.")])
     story.extend([p("Task 6 - Bugs, progress and retrospectives - NOT VERIFIED", "Task"), p("No Jira bug history, report or retrospective exists. One genuine local copy defect concerning temporary session storage was corrected and recorded. Future retrospective content must come from actual events.")])
 
     story.extend([p("Part C - GitHub collaboration and Jira integration", "Part")])
     story.extend([p("Task 7 - Repository, README and integration - PARTIAL", "Task"), p(f"The public repository is live at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM')}. Baseline commit fe10bd3 contains the complete existing source. Jira development linkage is blocked.")])
     story.extend([p("Task 8 - Branches and meaningful commits - PARTIAL", "Task"), p("The already-complete uncommitted source was published as one truthful baseline rather than split into fake historical feature commits. A real project-documentation branch records subsequent delivery work. Jira-key naming is unavailable.")])
-    story.extend([p("Task 9 - Pull requests and code review - BLOCKED", "Task"), p("A genuine documentation PR can be left ready for legitimate review and CI. Four merged PRs and independent review are not claimed. Instructor approval for the solo-group review arrangement is required.")])
+    story.extend([p("Task 9 - Pull requests and code review - BLOCKED", "Task"), p(f"A genuine documentation PR is open at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1', 'pull request 1')} and its pull-request CI run 45044977813 passed. It remains unmerged for legitimate review. Four merged PRs and independent review are not claimed. Instructor approval for the solo-group review arrangement is required.")])
     story.extend([p("Task 10 - Balanced participation - BLOCKED", "Task"), p("Only Shawal Ahmad is identified. The secondary account is the same person and cannot satisfy independent contribution or review requirements.")])
     story.append(PageBreak())
 

@@ -60,7 +60,7 @@ The already-complete uncommitted source was recorded as one truthful baseline ra
 
 ## Task 9 - Pull requests and code review - BLOCKED
 
-A genuine documentation PR is prepared for legitimate review and CI. Four merged PRs and independent review cannot be claimed. Instructor approval for the one-person arrangement and reviewer is required.
+A genuine documentation PR is open at https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1 and its pull-request CI run 45044977813 passed. It remains unmerged for legitimate review. Four merged PRs and independent review cannot be claimed. Instructor approval for the one-person arrangement and reviewer is required.
 
 ## Task 10 - Balanced participation - BLOCKED
 

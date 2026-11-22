@@ -12,7 +12,7 @@
 | B6: Bugs/retro | 6 | Genuine defects only, progress/burndown or equivalent report, retros x2 | Bug history, reports, retros | Codex | NOT VERIFIED: FUTURE EVENTS |
 | C7: Repo & integration | 5 | Shared repo, full source/README, Jira-GitHub linked issue, accessible main | Repo URL, README, linked Jira issue | Codex | PARTIAL: REPO LIVE, JIRA BLOCKED |
 | C8: Branch/commits | 5 | Focused feature/bug branches with issue key, incremental linked commits, real member history | Branches, commits, Jira links | Codex | PARTIAL: REAL BRANCH, NO JIRA KEYS |
-| C9: PR/reviews | 7 | >=4 meaningful merged PRs; under normal team >=2 per student and other member reviews, feedback and CI | Four PR links/screenshots and real reviews | Codex + approved reviewer | BLOCKED: SOLO APPROVAL |
+| C9: PR/reviews | 7 | >=4 meaningful merged PRs; under normal team >=2 per student and other member reviews, feedback and CI | Four PR links/screenshots and real reviews | Codex + approved reviewer | BLOCKED: 1 OPEN PR; REVIEW APPROVAL NEEDED |
 | C10: Balanced participation | 3 | Genuine contributions/understanding from approved member(s) | Accurate work division and contributions | Student | BLOCKED: SOLO APPROVAL |
 | D11: CI workflow | 4 | Workflow in `.github/workflows`, feature/bug pushes and main PRs, passing main | YAML + Actions completed run | Codex | PASS: RUN 45043988754 |
 | D12: PHP syntax lint | 3 | Lint all relevant PHP, errors fail job | YAML step, passing logs, optionally failure logs | Codex | PASS: 17 FILES |

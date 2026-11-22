@@ -1,9 +1,9 @@
 # Agent Handoff — QuickPOS
 
-**Updated:** 2026-11-22 21:13 PKT  
-**Stage:** LOCAL WEBSITE QA AND CI FOUNDATION COMPLETE; REMOTE SETUP BLOCKED  
-**Implementation:** LOCAL WEBSITE PRESENT AND VERIFIED; UNCOMMITTED  
-**Jira/GitHub actions:** REMOTE ACTIONS NOT STARTED; GITHUB IDENTITY VERIFIED  
+**Updated:** 2026-11-22 21:39 PKT  
+**Stage:** GITHUB BASELINE AND CI LIVE; DOCUMENTATION PR OPEN; JIRA BLOCKED  
+**Implementation:** WEBSITE VERIFIED; BASELINE PUBLISHED; DOCUMENTATION PR UNMERGED  
+**Jira/GitHub actions:** GITHUB ACTIVE; JIRA CONNECTION UNAVAILABLE  
 **Solo-group approval:** NOT CONFIRMED
 
 ## Current source of truth
@@ -57,3 +57,13 @@ Do not overwrite previous entries; append new entries after this heading. Keep s
 - External actions/URLs: NONE. No commit, push, repository, PR, review, Jira issue, sprint transition or CI run was created or claimed.
 - Open blockers: approved Group ID; student roll number; authorized Jira workspace and actual issue keys; instructor approval for the solo group; approved independent-review arrangement; repository/commit strategy; commit-author email confirmation.
 - Next action + owner: obtain the institutional identifiers/approvals and Jira access, then plan real issue-key branches and repository creation under verified `ShawalAhmad10`. Run the committed workflow remotely only after that authorization; preserve authentic CI evidence from real runs.
+
+### 2026-11-22 21:39 PKT — Codex — GitHub, CI and submission preparation
+- Code/files changed: published the existing source as a truthful baseline; updated README/matrices/evidence; added Task 1-16 audit, two future sprint templates, viva preparation, Jira import guide/CSV, evidence-report source/build script and rendered PDF draft. No website redesign was performed.
+- GitHub: created public repository `https://github.com/ShawalAhmad10/QuickPOS-SPM`; baseline commit `fe10bd36b1eb77907a222d8f74d9c28b7aad38f5` authored by Shawal Ahmad; opened PR `https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1` from `feature/project-documentation`. PR remains open and unreviewed by design.
+- Real commands/tests: secret scan → no findings; PHP lint → PASS 17/17; tests → PASS 13/13; main CI run 45043988754 → PASS; PR CI run 45044977813 → PASS; Jira CSV validation → 7 Epics, 15 Stories, 5 Tasks, 5 Subtasks, 0 invalid core rows; PDF → 11 A4 pages rendered and visually checked after layout correction.
+- Jira status and issue keys: no Jira project/keys exist. Atlassian integration is available but not installed/connected; no authorized Jira site URL or workspace context was available. Import-ready data is in `docs/jira/quickpos-backlog-import.csv`.
+- Integrity: no second student, independent review, Jira link, sprint start/closure, failed CI, Group ID, roll number or instructor approval is claimed. `ShawalAhmad97` remains the same person as the primary account holder.
+- Submission preparation: evidence PDF draft is `output/pdf/QuickPOS_Evidence_Report.pdf`; source ZIP and `QuickPOS_Viva_Notes.md` are generated locally from the final branch state and are not submitted to the university.
+- Open blockers: approved Group ID; roll number; connected Jira workspace; actual issue keys; solo-group and independent-review approval; three additional meaningful PRs plus four legitimate reviews/merges overall; real sprint execution/reporting; authentic failed→fixed CI evidence; final submission and live viva.
+- Next action + owner: connect Atlassian and obtain institutional approvals/identifiers, import and verify the backlog, execute Sprint 1 on 23-29 Nov, obtain legitimate review for PR 1, then refresh the report/package after actual events.

@@ -28,7 +28,7 @@ This is a factual pre-sprint acceptance audit, not a grade and not proof that fu
 | 6. Bugs/progress/retros | NOT VERIFIED | One real local wording defect documented in handoff | Jira bug history, reports, completed retrospectives |
 | 7. Repository/README/integration | PARTIAL | Public repository and updated README | Jira-GitHub development link |
 | 8. Branches/commits | PARTIAL | Baseline commit plus real documentation branch | Jira-key naming/linkage and further authentic commits |
-| 9. Pull requests/reviews | BLOCKED | One real documentation PR planned/opened by this milestone | Four merged PRs and instructor-approved independent reviews |
+| 9. Pull requests/reviews | BLOCKED | Open PR https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1 with passing run 45044977813 | Four merged PRs and instructor-approved independent reviews |
 | 10. Balanced participation | BLOCKED | Honest single-person disclosure | Instructor-approved solo exception/contribution arrangement |
 | 11. CI workflow/triggers | PASS | `.github/workflows/ci.yml`; passing run 45043988754 | None for configured workflow; retain future run evidence |
 | 12. PHP syntax checks | PASS | 17 files linted locally and remotely | None |

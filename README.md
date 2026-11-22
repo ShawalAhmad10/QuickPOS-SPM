@@ -47,7 +47,10 @@ The application sets baseline CSP, clickjacking, MIME-sniffing and referrer head
 `.github/workflows/ci.yml` runs on `main`, `feature/**`, `bugfix/**`, and pull requests targeting `main`. It uses Ubuntu and PHP 8.3, lints all PHP files and runs `php tests/run.php`.
 
 - Latest verified baseline run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754
+- Verified documentation PR run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45044977813
 - Workflow page: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/workflows/ci.yml
+
+Current real PR: https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1 . It remains open for a legitimate instructor-approved review and is not counted as merged/reviewed evidence.
 
 ## Project documents
 - `START_HERE.md` — operator sequence.
