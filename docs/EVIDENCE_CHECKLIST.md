@@ -1,33 +1,34 @@
-# Evidence manifest — fill only from actual verified events
+# QuickPOS evidence manifest
 
-**Status:** local engineering evidence was verified on 22 Nov 2026. Required remote Jira/GitHub records and final grading screenshots have not yet been generated.
+**Cutoff:** 23 November 2026 (PKT). Record only observable files, URLs and events.
 
-| Task | Evidence artifact / actual location or URL | Verified? | Date captured |
-|---|---|---|---|
-| A1 | Local browser inspection at 375/768/1280: no horizontal overflow; responsive mobile/tablet/desktop layouts rendered. Required screenshot files still pending. | PARTIAL | 2026-11-22 |
-| A2 | Local live browser/DOM audit: Header, Hero, Features, Pricing, Contact and Footer present; 23 internal links/CTAs inspected with no missing fragment targets; mobile menu open/Escape behavior passed. Required demonstration screenshots still pending. | PARTIAL | 2026-11-22 |
-| A3 | Local HTTP/browser verification: direct handler GET 303; invalid POST 422 with field errors and escaped retained input; valid POST 303 to one-time confirmation; confirmation GET 200 then refresh/direct reuse 303. Required screenshots still pending. | PARTIAL | 2026-11-22 |
-| B4 | Jira epics/backlog + two detailed story screenshots | NO | — |
-| B5 | Sprint 1 and 2 planned boards, active board, completed summaries | NO | — |
-| B6 | Actual bugs if present, burndown/sprint reports, retrospectives | NO | — |
-| C7 | Repo URL, README screenshot, Jira issue with development link | NO | — |
-| C8 | Focused branches + issue-key commits + Jira-linked activity | NO | — |
-| C9 | Four meaningful merged PRs, real review feedback/approval, CI | NO | — |
-| C10 | Factual work division; documented solo exception | NO | — |
-| D11 | `.github/workflows/ci.yml` implements required Ubuntu/PHP triggers and steps; embedded Bash lint script passed local syntax checking. Remote Actions run pending repository creation. | PARTIAL | 2026-11-22 |
-| D12 | Local `php -l` run passed for all 17 PHP files under `public/`, `src/` and `tests/`. Remote Actions log pending. | PARTIAL | 2026-11-22 |
-| D13 | `tests/run.php`: 13/13 dependency-free validation, normalization, boundary, non-string and escaping tests passed locally with failure-count/nonzero-exit handling. Remote Actions log pending. | PARTIAL | 2026-11-22 |
-| D14 | Actual failed run + corrected passing run + explanation | NO | — |
-| E15 | Source ZIP + PDF/Word labeled Parts A–E, Tasks #1–#16; URLs | NO | — |
-| E16 | Live viva: verification done by instructor during evaluation | NO | — |
+| Task | Verified evidence | State |
+|---|---|---|
+| 1 | `docs/evidence/website/01-desktop-full-1280.png`, `02-mobile-full-375.png`; viewport audit | YES locally |
+| 2 | Screenshots 01–07; `docs/WEBSITE_FINAL_QA.md` | YES locally |
+| 3 | Invalid/valid form screenshots; 13-case runner; real 303/422 flow | YES locally |
+| 4 | Jira QPOS; 32 issues QPOS-1–QPOS-32; live count/type/status data verified | YES setup; authenticated UI captures remain |
+| 5 | QPOS Sprint 1 active 23–29 Nov with 6 Done and 3 In Progress; Sprint 2 planned 30 Nov–6 Dec | IN PROGRESS |
+| 6 | 14 issues Done overall; QPOS-32 Done; QPOS-26/QPOS-27 In Progress; QPOS-14–QPOS-18 retain factual pre-sprint evidence; retrospectives not yet written | PARTIAL |
+| 7 | https://github.com/ShawalAhmad10/QuickPOS-SPM and QPOS-23 open-PR Development linkage | YES |
+| 8 | Jira-keyed PRs #2 QPOS-23, #3 QPOS-19, #4 QPOS-24 | YES |
+| 9 | `docs/evidence/github/four-open-prs.png`; preserved same-owner AI-assisted findings | BLOCKED: no qualifying approval/merge |
+| 10 | Approved Solo Project reported by Shawal Ahmad (22F-3303); both GitHub accounts disclosed as the same student | PARTIAL: documentary approval/review arrangement not included |
+| 11 | Workflow, stable main run, captured PR run `45160271783`, and live PR checks | YES |
+| 12 | PR #4 repository-wide discovery and 17/17 lint | YES on open PR |
+| 13 | PR #3/#4 hardened runner and 13/13 tests | YES on open PR |
+| 14 | Failed/fixed run links plus genuine UI captures under `docs/evidence/github/` | YES |
+| 15 | Required evidence PDF and source ZIP | PARTIAL: final merged source and LMS submission absent |
+| 16 | `docs/VIVA_PREPARATION.md` and `QuickPOS_Viva_Notes.md` | PREPARED; live viva future |
 
-## Recommended physical evidence layout (create when evidence exists)
-```text
-docs/evidence/
-  part-a-website/
-  part-b-jira/
-  part-c-github/
-  part-d-ci/
-  part-e-submission/
-```
-Screenshots must come from **actual app, Jira or GitHub UI** and remain readable. Capture file origin/URL and date, don't paste fabricated progress or invented grader feedback. The final report should embed images and link to real sources.
+## Pull-request evidence
+
+- PR #1: https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1
+- PR #2: https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/2
+- PR #3: https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/3
+- PR #4: https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/4
+- Current same-owner technical comment IDs: PR #2 `7098612670`, PR #3 `7098613939`, PR #4 `7098615055`, and PR #1 findings/resolution/simulation `7098616279`, `7098708947`, `7098747894`. These are findings, not independent approvals.
+
+## Final capture still required
+
+Qualifying review/merge records; final main CI; post-merge Jira Development/status evidence; both sprint reports/retrospectives; authenticated Jira backlog/Epic/story/sprint captures; a readable real GitHub review-discussion capture; documentary solo approval if available; LMS receipt. Four genuine GitHub PR/CI captures are already retained. Screenshots must remain readable and traceable to the actual UI and date.

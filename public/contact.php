@@ -23,7 +23,7 @@ if (!$result['valid']) {
     exit;
 }
 
-// Demo only: nothing is emailed or stored. Keep just enough in the session for the
+// Demo only: nothing is emailed or saved persistently. Keep just enough in the session for the
 // confirmation page, then redirect (Post/Redirect/Get) so a refresh cannot resubmit.
 start_confirmation_session();
 $_SESSION['qp_thanks'] = [

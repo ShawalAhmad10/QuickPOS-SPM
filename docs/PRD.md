@@ -66,8 +66,9 @@ Pricing to be clearly labeled **illustrative / fictional**. Suggested: Basic $19
 - Student can demonstrate and explain the implementation and workflow in a live viva.
 
 ## 9. Dependencies / unresolved decisions
-- **BLOCKED:** solo-group authorization and alternative peer review arrangement.
-- **PENDING:** approved group ID, GitHub repo URL, Jira project key and access.
-- **PENDING:** verified student roll number for final report.
+- **CONFIRMED BY STUDENT:** Approved Solo Project; documentary approval is not stored in the repository.
+- **VERIFIED:** GitHub repository `ShawalAhmad10/QuickPOS-SPM`, Jira project `QPOS`, and board 35.
+- **VERIFIED:** Shawal Ahmad, roll number 22F-3303, BCS-9C.
+- **BLOCKED:** qualifying PR-review arrangement and independent review evidence.
 
 **Authority:** official course PDF in `docs/reference/`. If there is a conflict, the original document prevails; do not reinterpret requirements without approval.

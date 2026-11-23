@@ -1,0 +1,33 @@
+Issue ID,Issue Type,Summary,Description,Parent ID,Priority,Story Points,Sprint,Assignee,Labels
+100,Epic,Navigation and Header,"Accessible QuickPOS branding, desktop navigation, mobile navigation and Sign Up CTA.",,High,,,,section-header
+101,Epic,Hero,"Product value proposition, calls to action and original illustrative POS dashboard.",,High,,,,section-hero
+102,Epic,Features,"Required Inventory, Analytics, Customers and Integrations feature presentation.",,High,,,,section-features
+103,Epic,Pricing,"Illustrative Basic, Pro and Enterprise plans with functional contact CTAs.",,High,,,,section-pricing
+104,Epic,Contact,"Accessible PHP POST contact flow, server validation and accurate confirmation.",,Highest,,,,section-contact
+105,Epic,Footer,"Copyright, meaningful navigation and explicit social placeholders.",,Medium,,,,section-footer
+106,Epic,Testing and CI,"Automated validation tests, PHP lint, responsive QA, CI and evidence.",,Highest,,,,"testing,ci"
+200,Story,Desktop navigation works,"As a visitor I can use desktop navigation. Acceptance: logo visible; Features/Pricing/Contact targets exist; Sign Up reaches Contact; keyboard focus is visible.",100,High,3,Sprint 1,,navigation
+201,Story,Mobile navigation is accessible,"As a mobile visitor I can open and close navigation. Acceptance: menu toggles; aria-expanded changes; Escape returns focus; link click closes menu; no overflow.",100,High,3,Sprint 1,,navigation
+202,Story,Hero communicates product value,"As a visitor I understand the QuickPOS value proposition. Acceptance: required headline/subcopy appear; Get Started reaches Contact; Explore Features reaches Features.",101,High,3,Sprint 1,,hero
+203,Story,POS mockup presents credible sample data,"As a visitor I can inspect a credible POS dashboard. Acceptance: custom HTML/CSS/SVG visual; sales/stock/analytics represented; data labelled illustrative; responsive.",101,High,5,Sprint 1,,hero
+204,Story,Core features are explained,"As a visitor I see four core features. Acceptance: Inventory, Analytics, Customers and Integrations each have an icon, title and benefit.",102,High,3,Sprint 1,,features
+205,Story,PHP entry points are testable,"As a maintainer I have clear PHP entry points. Acceptance: public/src separation; reusable validateContact contract; local PHP server starts without warnings.",104,High,3,Sprint 1,,php
+206,Story,Plans can be compared,"As a visitor I can compare Basic, Pro and Enterprise. Acceptance: illustrative price/benefits visible; Pro highlighted; each CTA reaches Contact with selected plan; no billing.",103,High,3,Sprint 2,,pricing
+207,Story,Contact form is accessible,"As a visitor I can submit Name Email and Message. Acceptance: associated labels; POST method; submit control; plan context preserved.",104,High,3,Sprint 2,,contact
+208,Story,Server rejects invalid contact input,"As a visitor I see accurate validation. Acceptance: empty name/message and invalid email rejected; field errors and summary shown; safe values retained; HTTP 422.",104,Highest,5,Sprint 2,,validation
+209,Story,Valid contact input receives honest confirmation,"As a visitor I receive confirmation. Acceptance: valid POST redirects with 303; one-time page; no false email or persistent-storage claim; refresh cannot replay success.",104,High,2,Sprint 2,,validation
+210,Story,Footer navigation is meaningful,"As a visitor I can navigate from the footer. Acceptance: copyright; site/product links; social placeholders explicitly identified.",105,Medium,2,Sprint 2,,footer
+211,Story,Validation has executable tests,"As a maintainer I have automated validation tests. Acceptance: at least four required cases; edge cases; any failure exits nonzero; command documented.",106,Highest,3,Sprint 2,,testing
+212,Story,GitHub Actions runs quality checks,"As a maintainer I have CI. Acceptance: required branch/PR triggers; Ubuntu/PHP; all PHP linted; tests run; any error fails; main green.",106,Highest,5,Sprint 2,,ci
+213,Story,Page is responsive and reliable,"As a visitor I can use the page at 375 768 and 1280 pixels. Acceptance: no horizontal overflow; CTAs work; browser has no console/page errors.",106,High,3,Sprint 2,,responsive
+214,Story,Evaluator documentation is accurate,"As an evaluator I can reproduce and inspect the project. Acceptance: README run/test steps; actual links; evidence inventory; contributor disclosure; no placeholders presented as facts.",106,Medium,2,Sprint 2,,documentation
+300,Task,Connect GitHub repository to Jira,"Connect the authorized public repository and verify a real Jira issue displays development activity after issue-key work exists.",106,High,,Sprint 1,,integration
+301,Task,Verify PHP syntax across repository,"Run php -l for every PHP file; retain local and remote logs; failures must stop CI.",106,Highest,,Sprint 2,,ci
+302,Task,Capture responsive evidence,"Capture readable real screenshots at required widths and record origin/date in evidence manifest.",106,High,,Sprint 2,,evidence
+303,Task,Prepare final evidence report,"Draft Parts A-E and Tasks 1-16 using only actual files, URLs, screenshots and explicit gaps.",106,Medium,,Sprint 2,,evidence
+304,Task,Prepare source submission package,"Build and verify a credential-free source ZIP containing all files needed to run the application and tests.",106,Medium,,Sprint 2,,submission
+400,Subtask,Verify Jira development link,"After a real keyed commit/PR, confirm the Jira development panel shows the GitHub activity.",300,High,,Sprint 1,,integration
+401,Subtask,Run local full PHP lint,"Record the exact file count and command output before pushing workflow changes.",301,High,,Sprint 2,,ci
+402,Subtask,Capture mobile navigation open,"At 375px capture the menu open with accessible controls visible.",302,Medium,,Sprint 2,,evidence
+403,Subtask,List unavailable evidence explicitly,"Record Jira, review, sprint, failed-CI and approval gaps without invented links.",303,High,,Sprint 2,,integrity
+404,Subtask,Verify ZIP integrity,"List archive contents, test extraction/readability and confirm secrets/caches are excluded.",304,High,,Sprint 2,,submission

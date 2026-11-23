@@ -1,41 +1,64 @@
 # QuickPOS — POS SaaS Landing Page
 
-**CS4002 Fundamentals of Software Project Management | FAST-NUCES Chiniot-Faisalabad | Fall 2026**
+**CS4002 Fundamentals of Software Project Management | FAST-NUCES Faisalabad Campus | BCS-9C | Fall 2026**
 
-> **Status: planning scaffold (22 Nov 2026), not yet a working product.** Claude will implement the site, Codex will manage tracked engineering/QA/evidence. Update this status **only after verifying** the actual implementation.
+> **Verified 23 November 2026:** the accepted PHP website is published; `main` is green; Jira project QPOS has 32 issues and Sprint 1 is active. Four genuine PRs are open and green. Approved Solo Project status is student-reported; merges remain pending because the qualifying PR-review arrangement is not evidenced.
 
-QuickPOS is a **fictional** point-of-sale SaaS product showcased through a responsive, custom-designed **PHP landing page**. This is **not a working POS application**. The semester project assesses the resulting website plus genuine Scrum, GitHub workflow, Jira integration, automated PHP testing and CI evidence.
+The complete tested integration candidate is on `feature/project-documentation`; see `INTEGRATION_CANDIDATE.md`. It is intentionally separate from `main` until qualifying review evidence exists.
+
+QuickPOS is a responsive PHP marketing site for a fictional point-of-sale SaaS product. It is not a working POS backend. The project demonstrates the six required page sections, server-side contact validation, automated tests, GitHub Actions, Jira Scrum activity and evidence-backed engineering workflow.
 
 ## Team and governance
-- Actual student/project owner: **Shawal Ahmad** (roll no. **[VERIFY BEFORE SUBMISSION]**).
-- Group ID: **[APPROVED GROUP ID PENDING]**.
-- Main GitHub: https://github.com/ShawalAhmad10
-- Optional automation GitHub account: https://github.com/ShawalAhmad97 — controlled by the same person, not a separate enrolled member.
-- Jira project and GitHub repository URLs: **[NOT CREATED/VERIFIED YET]**.
-- Solo-group exception and alternate PR review arrangement: **[INSTRUCTOR APPROVAL PENDING]**.
+
+- Student/project owner: **Shawal Ahmad (22F-3303)**.
+- Group description: **Approved Solo Project** (student-reported; documentary proof is not included in this repository).
+- Submitted to: **Miss Maham Saleem**.
+- Primary GitHub account: `ShawalAhmad10`.
+- `ShawalAhmad97` is controlled by the same person and is not a second student or independent reviewer.
+- Repository: https://github.com/ShawalAhmad10/QuickPOS-SPM
+- Jira project: https://shawalahmad97.atlassian.net/jira/software/projects/QPOS
+- The solo-project approval is reported by the student. The qualifying PR-review arrangement is not evidenced, so all PRs remain open.
 
 ## Scope
-Six sections: Navigation/Header, Hero, Features, Pricing, Contact, Footer. PHP POST validation for Name/Email/Message with meaningful errors and success. Responsive at 375px/768px/1280px. No database, payment gateway, authentication or live-email delivery.
 
-## Planned stack
-PHP 8.2+, HTML5, CSS3, minimal vanilla JS, free Jira, GitHub and GitHub Actions; no UI framework or paid dependency required.
+Navigation/Header, Hero, Features, Pricing, Contact and Footer; PHP POST validation for Name/Email/Message; responsive layouts at 375px, 768px and 1280px. No database, payments, registration, authentication, real email or paid features.
 
-## Run locally **after implementation**
+## Run and verify locally
+
 ```powershell
-php -v
 php -S localhost:8000 -t public
+php tests/run.php
+$files = git ls-files '*.php'
+foreach ($file in $files) { php -l $file }
 ```
-Open `http://localhost:8000`. Form validation tests (when added): `php tests/run.php`.
+
+The hardened test runner treats PHP warnings/notices as failures and includes exact maximum-length boundaries. The application uses output encoding, input normalization, baseline security headers and short-lived hardened session cookies for the one-time confirmation page.
+
+## Continuous integration and pull requests
+
+`.github/workflows/ci.yml` runs on `main`, `feature/**`, `bugfix/**` and pull requests to `main`. It uses Ubuntu and PHP 8.3, discovers every tracked PHP file, fails on lint errors and runs the 13-case validation suite.
+
+- Stable main run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754
+- Controlled failed run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311
+- Corrected passing run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088
+- PR #1: https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1
+- PR #2 (QPOS-23): https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/2
+- PR #3 (QPOS-19): https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/3
+- PR #4 (QPOS-24): https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/4
+
+AI-assisted technical findings are recorded on each PR and explicitly are not independent human approvals. Safe merge order after genuine authorization is **#2 → #3 → #4 → refreshed #1**.
 
 ## Project documents
-- `START_HERE.md` — operator sequence.
-- `docs/PRD.md` / `docs/DESIGN.md` / `docs/ARCHITECTURE.md` — product/UX/engineering contract.
-- `docs/JIRA_BACKLOG.md` / `docs/SPRINT_PLAN.md` / `docs/GITHUB_WORKFLOW.md` — management plan.
-- `docs/REQUIREMENTS_MATRIX.md` / `docs/TEST_PLAN.md` / `docs/EVIDENCE_CHECKLIST.md` — quality and evaluation traceability.
-- `docs/AGENT_HANDOFF.md` — truthful state between Claude and Codex.
-- `prompts/` — task-scoped, low-repetition agent prompts.
+
+- `docs/AGENT_HANDOFF.md` — chronological verified execution record.
+- `docs/REQUIREMENTS_MATRIX.md` — official Task 1–16 traceability.
+- `docs/FINAL_TECHNICAL_AUDIT.md` — current engineering audit and gap list.
+- `docs/TEST_PLAN.md` and `docs/EVIDENCE_CHECKLIST.md` — QA and evidence controls.
+- `docs/SPRINT_PLAN.md`, `docs/SPRINT_1_REPORT.md`, `docs/SPRINT_2_REPORT.md` — truthful Scrum plan/status.
+- `docs/EVIDENCE_REPORT_DRAFT.md` and `output/pdf/QuickPOS_Evidence_Report.pdf` — current report source/output.
 
 ## Academic integrity
-AI development is allowed, but the student must understand and demonstrate the code and workflow in the live viva. No invented human identities, synthetic peer reviews, fake sprints, fake PR history, or fabricated test results.
 
-**Deadline:** December 10, 2026 at 11:59 PM PKT. **Official brief:** `docs/reference/CS4002_QuickPOS_Semester_Project_BCS9C_Fall2026.pdf`.
+Both GitHub accounts belong to Shawal Ahmad (22F-3303); neither is presented as a second student or independent reviewer. No independent approval, merge, sprint closure, documentary solo-approval proof or submission receipt is claimed without evidence.
+
+**Deadline:** 10 December 2026, 11:59 PM PKT. **Authoritative brief:** `docs/reference/CS4002_QuickPOS_Semester_Project_BCS9C_Fall2026.pdf`.
