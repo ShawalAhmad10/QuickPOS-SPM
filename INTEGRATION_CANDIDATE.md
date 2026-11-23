@@ -1,7 +1,8 @@
 # QuickPOS verified integration candidate
 
-**Prepared:** 23 November 2026  
-**Branch:** `feature/project-documentation`  
+**Prepared:** 23 November 2026
+
+**Branch:** `feature/project-documentation`
 **Merge state:** not merged to `main`
 
 This branch safely contains the genuine work from the four open pull requests in the prepared order:
