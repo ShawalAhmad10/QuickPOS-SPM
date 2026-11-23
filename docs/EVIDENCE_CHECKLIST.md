@@ -14,7 +14,7 @@
 | 8 | Jira-keyed PRs #2 QPOS-23, #3 QPOS-19, #4 QPOS-24 | YES |
 | 9 | `docs/evidence/github/four-open-prs.png`; preserved same-owner AI-assisted findings | BLOCKED: no qualifying approval/merge |
 | 10 | Approved Solo Project reported by Shawal Ahmad (22F-3303); both GitHub accounts disclosed as the same student | PARTIAL: documentary approval/review arrangement not included |
-| 11 | Workflow, stable main run and `docs/evidence/github/ci-passing-run-45160271783.png` | YES |
+| 11 | Workflow, stable main run, captured PR run `45160271783`, and live PR checks | YES |
 | 12 | PR #4 repository-wide discovery and 17/17 lint | YES on open PR |
 | 13 | PR #3/#4 hardened runner and 13/13 tests | YES on open PR |
 | 14 | Failed/fixed run links plus genuine UI captures under `docs/evidence/github/` | YES |

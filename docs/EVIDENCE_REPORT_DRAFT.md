@@ -63,7 +63,7 @@ Solo-project approval is reported by the student. Documentary approval and the q
 
 ## Task 11 — Workflow — PASS
 
-GitHub Actions runs on main, feature/bugfix pushes and pull requests to main using Ubuntu and PHP 8.3. Stable main run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754
+GitHub Actions runs on main, feature/bugfix pushes and pull requests to main using Ubuntu and PHP 8.3. Stable main run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754. The evidence-refresh commit `effad9b` passed push run `45165538594` and PR run `45165545398`; the report links PR #1's live checks so a later documentation-only commit cannot make a “current run” claim stale.
 
 ## Task 12 — PHP lint — PASS on open PR
 
