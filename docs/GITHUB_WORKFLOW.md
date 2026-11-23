@@ -4,7 +4,7 @@
 Primary repo owner: https://github.com/ShawalAhmad10. Secondary automation login: https://github.com/ShawalAhmad97, controlled by **the same individual**. Both accounts may be used transparently where provider rules permit; their activity cannot be passed off as independent students or peer reviews. Independent code reviews require an **approved real reviewer** or an instructor-approved equivalent. The original course requirement expects at least four meaningful merged PRs, with two per genuine student in a normal two-person group.
 
 ## Repository
-Suggested: `ShawalAhmad10/QuickPOS-[APPROVED_GROUP_ID]`. Do **not** invent group ID. Public recommended by brief for GitHub Actions ease; ensure necessary instructor/TA access. Verify remote target and active authentication before any push.
+Actual public repository: `ShawalAhmad10/QuickPOS-SPM`. Group description: Approved Solo Project (student-reported); no numeric Group ID is invented. Ensure necessary instructor/TA access and verify remote target and active authentication before every push.
 
 ## Branch names
 `feature/<REAL-ISSUE-KEY>-header-nav`  

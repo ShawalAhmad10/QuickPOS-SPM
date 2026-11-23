@@ -3,7 +3,9 @@
 **Evidence cutoff:** 23 November 2026 (PKT)
 **Repository:** https://github.com/ShawalAhmad10/QuickPOS-SPM
 **Jira:** https://shawalahmad97.atlassian.net/jira/software/projects/QPOS
-**Student:** Shawal Ahmad — roll number and approved Group ID pending
+**Student:** Shawal Ahmad — 22F-3303 — BCS-9C
+**Group description:** Approved Solo Project (student-reported; documentary proof not included)
+**Submitted to:** Miss Maham Saleem
 
 ## Contributor and review disclosure
 
@@ -53,7 +55,7 @@ PRs #1–#4 are genuine and green. AI-assisted review comments are labeled accur
 
 ## Task 10 — Participation — BLOCKED
 
-An instructor-approved solo-group and alternative-review arrangement has not been evidenced.
+Solo-project approval is reported by the student. Documentary approval and the qualifying PR-review arrangement are not included.
 
 # Part D — Tests and CI
 
@@ -77,7 +79,7 @@ The explicitly labeled controlled exercise failed truthfully at https://github.c
 
 ## Task 15 — ZIP and report — PARTIAL
 
-The local source ZIP, this Task 1–16 report and the rendered PDF are refreshed from current evidence. Group ID, roll number, final merge/sprint proof and LMS receipt are still absent.
+The local integration-candidate ZIP, this Task 1–16 report and the rendered PDF use the confirmed academic identity. Final merge/sprint proof and the LMS receipt are still absent.
 
 ## Task 16 — Live viva — PARTIAL
 
@@ -85,8 +87,7 @@ Demonstration notes exist; the live evaluation has not occurred.
 
 # Remaining blockers
 
-1. Group ID and roll number.
-2. Written solo-group and qualifying-review approval.
-3. Four legitimate reviews and authorized merges, then final main CI/Jira verification.
-4. Real completion of both sprints, reports and retrospectives.
-5. Final screenshots and LMS submission receipt.
+1. Documentary solo-project approval if available and the qualifying PR-review arrangement.
+2. Four legitimate reviews and authorized merges, then final main CI/Jira verification.
+3. Real completion of both sprints, reports and retrospectives.
+4. Missing Jira/GitHub UI screenshots and the LMS submission receipt.

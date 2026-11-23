@@ -38,7 +38,7 @@ QuickPOS is a fictional POS SaaS marketing landing page, not a complete POS syst
 - Actual contributor: Shawal Ahmad, assisted by AI tools. The student remains responsible for understanding and demonstrating the code.
 - `ShawalAhmad10` and `ShawalAhmad97` are accounts controlled by the same person; they are not two students and cannot provide independent peer review.
 - The initial application existed before Git history and was committed as one truthful baseline rather than split into fake historical feature commits.
-- Solo-group and alternate review approval remain required from the instructor.
+- The student reports Approved Solo Project status; documentary proof is not included. The qualifying PR-review arrangement and review evidence remain required.
 
 ## Questions to rehearse
 

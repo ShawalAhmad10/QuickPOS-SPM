@@ -20,7 +20,7 @@ Before coding: check sprint board and select story. During implementation: move 
 ## Risk register
 | Risk | Impact | Mitigation |
 |---|---|---|
-| Solo group not approved | High evaluation risk | Ask instructor before relying on dual-account plan; document approved alternate reviewer |
+| Solo approval documentation/review arrangement not included | High evaluation risk | Retain documentary approval if available and obtain the qualifying reviewer arrangement; never treat the second owned account as independent |
 | GitHub account mismatch | Wrong owner/contributions | Check `gh auth status`, remote and git identity before pushes |
 | Jira connection unavailable | Backlog/traceability blocked | Setup official Atlassian connection or authorized browser workflow |
 | One-shot code loses PR traceability | C marks reduced | Phase implementation by Jira stories, not one giant dump |

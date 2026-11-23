@@ -13,7 +13,7 @@
 | 7 | https://github.com/ShawalAhmad10/QuickPOS-SPM and QPOS-23 open-PR Development linkage | YES |
 | 8 | Jira-keyed PRs #2 QPOS-23, #3 QPOS-19, #4 QPOS-24 | YES |
 | 9 | Four open PRs and preserved AI-assisted findings | BLOCKED: no qualifying approval/merge |
-| 10 | Single-person disclosure in README/handoff | BLOCKED: solo approval absent |
+| 10 | Approved Solo Project reported by Shawal Ahmad (22F-3303); both GitHub accounts disclosed as the same student | PARTIAL: documentary approval/review arrangement not included |
 | 11 | Workflow and successful main run https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754 | YES |
 | 12 | PR #4 repository-wide discovery and 17/17 lint | YES on open PR |
 | 13 | PR #3/#4 hardened runner and 13/13 tests | YES on open PR |
@@ -31,4 +31,4 @@
 
 ## Final capture still required
 
-Qualifying review/merge records; final main CI; post-merge Jira Development/status evidence; both sprint reports/retrospectives; Group ID and roll number; LMS receipt. Screenshots must remain readable and traceable to the actual UI and date.
+Qualifying review/merge records; final main CI; post-merge Jira Development/status evidence; both sprint reports/retrospectives; missing Jira/GitHub UI screenshots; documentary solo approval if available; LMS receipt. Screenshots must remain readable and traceable to the actual UI and date.

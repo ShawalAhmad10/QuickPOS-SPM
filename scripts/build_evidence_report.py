@@ -1,6 +1,5 @@
-from __future__ import annotations
-
 from pathlib import Path
+from shutil import copy2
 
 from PIL import Image as PILImage
 from reportlab.lib import colors
@@ -11,6 +10,7 @@ from reportlab.lib.units import mm
 from reportlab.pdfbase.pdfmetrics import stringWidth
 from reportlab.platypus import (
     Image,
+    Indenter,
     KeepTogether,
     PageBreak,
     Paragraph,
@@ -20,330 +20,436 @@ from reportlab.platypus import (
     TableStyle,
 )
 
-
 ROOT = Path(__file__).resolve().parents[1]
-OUTPUT = ROOT / "output" / "pdf" / "QuickPOS_Evidence_Report.pdf"
 EVIDENCE = ROOT / "docs" / "evidence" / "website"
+OUTPUT = ROOT / "output" / "pdf" / "QuickPOS_Evidence_Report.pdf"
+SUBMISSION_OUTPUT = ROOT / "submission-output" / "QuickPOS_Evidence_Report.pdf"
 
 NAVY = colors.HexColor("#0F172A")
-CYAN = colors.HexColor("#0891B2")
+TEAL = colors.HexColor("#0891B2")
+BLUE = colors.HexColor("#0369A1")
+GREEN = colors.HexColor("#15803D")
+AMBER = colors.HexColor("#B45309")
+RED = colors.HexColor("#B91C1C")
+SLATE = colors.HexColor("#475569")
 LIGHT = colors.HexColor("#F1F5F9")
-MUTED = colors.HexColor("#475569")
-GREEN = colors.HexColor("#166534")
-AMBER = colors.HexColor("#92400E")
-RED = colors.HexColor("#991B1B")
-
-
-def link(url: str, label: str | None = None) -> str:
-    safe_label = label or url
-    return f'<link href="{url}" color="#087F9A">{safe_label}</link>'
-
+LINE = colors.HexColor("#CBD5E1")
+WHITE = colors.white
 
 styles = getSampleStyleSheet()
-styles.add(
-    ParagraphStyle(
-        name="CoverTitle",
-        parent=styles["Title"],
-        fontName="Helvetica-Bold",
-        fontSize=28,
-        leading=33,
-        textColor=NAVY,
-        alignment=TA_LEFT,
-        spaceAfter=12,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="CoverSub",
-        parent=styles["Normal"],
-        fontName="Helvetica",
-        fontSize=12,
-        leading=18,
-        textColor=MUTED,
-        spaceAfter=8,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="Part",
-        parent=styles["Heading1"],
-        fontName="Helvetica-Bold",
-        fontSize=20,
-        leading=24,
-        textColor=NAVY,
-        spaceBefore=8,
-        spaceAfter=12,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="Task",
-        parent=styles["Heading2"],
-        fontName="Helvetica-Bold",
-        fontSize=13,
-        leading=17,
-        textColor=CYAN,
-        spaceBefore=10,
-        spaceAfter=5,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="BodyQ",
-        parent=styles["BodyText"],
-        fontName="Helvetica",
-        fontSize=9.2,
-        leading=13.2,
-        textColor=NAVY,
-        spaceAfter=6,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="SmallQ",
-        parent=styles["BodyText"],
-        fontName="Helvetica",
-        fontSize=7.8,
-        leading=10.2,
-        textColor=NAVY,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="TableHeaderQ",
-        parent=styles["BodyText"],
-        fontName="Helvetica-Bold",
-        fontSize=7.8,
-        leading=10.2,
-        textColor=colors.white,
-    )
-)
-styles.add(
-    ParagraphStyle(
-        name="CaptionQ",
-        parent=styles["BodyText"],
-        fontName="Helvetica-Oblique",
-        fontSize=8,
-        leading=10,
-        textColor=MUTED,
-        alignment=TA_CENTER,
-        spaceBefore=4,
-        spaceAfter=8,
-    )
-)
+styles.add(ParagraphStyle(
+    name="CoverKicker", parent=styles["Normal"], fontName="Helvetica-Bold",
+    fontSize=10, leading=14, textColor=TEAL, alignment=TA_CENTER, spaceAfter=5,
+))
+styles.add(ParagraphStyle(
+    name="CoverTitle", parent=styles["Title"], fontName="Helvetica-Bold",
+    fontSize=27, leading=31, textColor=NAVY, alignment=TA_CENTER, spaceAfter=4,
+))
+styles.add(ParagraphStyle(
+    name="CoverSub", parent=styles["Normal"], fontName="Helvetica",
+    fontSize=11, leading=16, textColor=SLATE, alignment=TA_CENTER, spaceAfter=5,
+))
+styles.add(ParagraphStyle(
+    name="Section", parent=styles["Heading1"], fontName="Helvetica-Bold",
+    fontSize=18, leading=22, textColor=NAVY, spaceBefore=3, spaceAfter=8,
+))
+styles.add(ParagraphStyle(
+    name="Task", parent=styles["Heading2"], fontName="Helvetica-Bold",
+    fontSize=12.5, leading=16, textColor=TEAL, spaceBefore=6, spaceAfter=4,
+))
+styles.add(ParagraphStyle(
+    name="Subhead", parent=styles["Heading3"], fontName="Helvetica-Bold",
+    fontSize=10.5, leading=14, textColor=BLUE, spaceBefore=5, spaceAfter=3,
+))
+styles.add(ParagraphStyle(
+    name="BodyQ", parent=styles["BodyText"], fontName="Helvetica",
+    fontSize=9.2, leading=13.2, textColor=NAVY, spaceAfter=5,
+))
+styles.add(ParagraphStyle(
+    name="SmallQ", parent=styles["BodyText"], fontName="Helvetica",
+    fontSize=7.7, leading=10.2, textColor=NAVY,
+))
+styles.add(ParagraphStyle(
+    name="TinyQ", parent=styles["BodyText"], fontName="Helvetica",
+    fontSize=6.8, leading=8.8, textColor=NAVY,
+))
+styles.add(ParagraphStyle(
+    name="CaptionQ", parent=styles["BodyText"], fontName="Helvetica-Oblique",
+    fontSize=7.5, leading=10, textColor=SLATE, alignment=TA_CENTER, spaceBefore=3,
+))
+styles.add(ParagraphStyle(
+    name="TableHeaderQ", parent=styles["BodyText"], fontName="Helvetica-Bold",
+    fontSize=7.5, leading=9.5, textColor=WHITE,
+))
+styles.add(ParagraphStyle(
+    name="Callout", parent=styles["BodyText"], fontName="Helvetica",
+    fontSize=8.5, leading=12, textColor=NAVY, backColor=LIGHT,
+    borderColor=LINE, borderWidth=0.5, borderPadding=7, spaceBefore=4, spaceAfter=6,
+))
 
 
-def p(text: str, style: str = "BodyQ") -> Paragraph:
+def p(text, style="BodyQ"):
     return Paragraph(text, styles[style])
 
 
-def status_color(status: str):
+def link(url, label=None):
+    return f'<link href="{url}" color="#0369A1">{label or url}</link>'
+
+
+def status_color(status):
     if status == "PASS":
         return GREEN
     if status == "PARTIAL":
         return AMBER
-    return RED
+    if status == "BLOCKED":
+        return RED
+    return SLATE
 
 
-def evidence_image(filename: str, caption: str, max_height: float = 205 * mm):
+def styled_table(rows, widths, header=True, tiny=False):
+    style_name = "TinyQ" if tiny else "SmallQ"
+    data = []
+    for row_index, row in enumerate(rows):
+        data.append([
+            p(str(value), "TableHeaderQ" if header and row_index == 0 else style_name)
+            for value in row
+        ])
+    commands = [
+        ("GRID", (0, 0), (-1, -1), 0.35, LINE),
+        ("VALIGN", (0, 0), (-1, -1), "TOP"),
+        ("LEFTPADDING", (0, 0), (-1, -1), 4),
+        ("RIGHTPADDING", (0, 0), (-1, -1), 4),
+        ("TOPPADDING", (0, 0), (-1, -1), 4),
+        ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
+        ("ROWBACKGROUNDS", (0, 1 if header else 0), (-1, -1), [WHITE, LIGHT]),
+    ]
+    if header:
+        commands += [
+            ("BACKGROUND", (0, 0), (-1, 0), NAVY),
+            ("TEXTCOLOR", (0, 0), (-1, 0), WHITE),
+        ]
+    return Table(data, colWidths=widths, repeatRows=1 if header else 0,
+                 style=TableStyle(commands))
+
+
+def evidence_image(filename, caption, max_width=165 * mm, max_height=175 * mm):
     path = EVIDENCE / filename
-    with PILImage.open(path) as img:
-        width_px, height_px = img.size
-    max_width = 170 * mm
+    if not path.exists():
+        return [p(f"Evidence image not found: {filename}", "Callout")]
+    with PILImage.open(path) as image:
+        width_px, height_px = image.size
     scale = min(max_width / width_px, max_height / height_px)
     rendered = Image(str(path), width=width_px * scale, height=height_px * scale)
     return [rendered, p(caption, "CaptionQ")]
 
 
-def on_page(canvas, doc):
+def page_header_footer(canvas, doc):
     canvas.saveState()
     width, height = A4
-    canvas.setStrokeColor(colors.HexColor("#CBD5E1"))
-    canvas.line(20 * mm, 15 * mm, width - 20 * mm, 15 * mm)
-    canvas.setFont("Helvetica", 7.5)
-    canvas.setFillColor(MUTED)
-    canvas.drawString(20 * mm, 10 * mm, "QuickPOS evidence report - verified through 23 November 2026")
+    if doc.page > 1:
+        canvas.setFillColor(NAVY)
+        canvas.rect(0, height - 12 * mm, width, 12 * mm, fill=1, stroke=0)
+        canvas.setFillColor(WHITE)
+        canvas.setFont("Helvetica-Bold", 8)
+        canvas.drawString(18 * mm, height - 7.5 * mm, "QuickPOS - CS4002 Evidence Report")
+        canvas.setFont("Helvetica", 7.5)
+        canvas.drawRightString(width - 18 * mm, height - 7.5 * mm, "Verified integration candidate")
+    canvas.setStrokeColor(LINE)
+    canvas.line(18 * mm, 15 * mm, width - 18 * mm, 15 * mm)
+    canvas.setFont("Helvetica", 7.2)
+    canvas.setFillColor(SLATE)
+    canvas.drawString(18 * mm, 10 * mm, "Shawal Ahmad | 22F-3303 | BCS-9C | 23 November 2026")
     page_text = f"Page {doc.page}"
-    canvas.drawString(width - 20 * mm - stringWidth(page_text, "Helvetica", 7.5), 10 * mm, page_text)
+    canvas.drawString(width - 18 * mm - stringWidth(page_text, "Helvetica", 7.2), 10 * mm, page_text)
     canvas.restoreState()
+
+
+def task(title, status, body):
+    color = status_color(status).hexval()
+    return [
+        p(f'{title} - <font color="{color}">{status}</font>', "Task"),
+        p(body),
+    ]
 
 
 def build():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    SUBMISSION_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(
-        str(OUTPUT),
-        pagesize=A4,
-        rightMargin=18 * mm,
-        leftMargin=18 * mm,
-        topMargin=18 * mm,
-        bottomMargin=22 * mm,
-        title="QuickPOS Evidence Report",
+        str(OUTPUT), pagesize=A4,
+        rightMargin=18 * mm, leftMargin=18 * mm,
+        topMargin=20 * mm, bottomMargin=20 * mm,
+        title="QuickPOS Semester Project - Evidence Report",
         author="Shawal Ahmad",
-        subject="CS4002 QuickPOS Parts A-E and Tasks 1-16",
+        subject="FAST-NUCES CS4002 Tasks 1-16 evidence report",
     )
-
     story = []
-    story.extend(
-        [
-            Spacer(1, 25 * mm),
-            p("FAST-NUCES | CS4002 | Fall 2026", "CoverSub"),
-            p("QuickPOS", "CoverTitle"),
-            p("Evidence report", "CoverTitle"),
-            Spacer(1, 8 * mm),
-            Table(
-                [
-                    [p("Student", "SmallQ"), p("Shawal Ahmad", "SmallQ")],
-                    [p("Roll number", "SmallQ"), p("Not supplied", "SmallQ")],
-                    [p("Approved Group ID", "SmallQ"), p("Not supplied", "SmallQ")],
-                    [p("Prepared", "SmallQ"), p("23 November 2026 (PKT)", "SmallQ")],
-                    [p("Repository", "SmallQ"), p(link("https://github.com/ShawalAhmad10/QuickPOS-SPM"), "SmallQ")],
-                    [p("Jira", "SmallQ"), p(link("https://shawalahmad97.atlassian.net/jira/software/projects/QPOS", "QPOS project"), "SmallQ")],
-                    [p("Baseline commit", "SmallQ"), p("fe10bd36b1eb77907a222d8f74d9c28b7aad38f5", "SmallQ")],
-                    [p("Passing CI", "SmallQ"), p(link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754", "Actions run 45043988754"), "SmallQ")],
-                ],
-                colWidths=[40 * mm, 125 * mm],
-                style=TableStyle(
-                    [
-                        ("BACKGROUND", (0, 0), (0, -1), LIGHT),
-                        ("BOX", (0, 0), (-1, -1), 0.5, colors.HexColor("#CBD5E1")),
-                        ("INNERGRID", (0, 0), (-1, -1), 0.25, colors.HexColor("#CBD5E1")),
-                        ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                        ("LEFTPADDING", (0, 0), (-1, -1), 6),
-                        ("RIGHTPADDING", (0, 0), (-1, -1), 6),
-                        ("TOPPADDING", (0, 0), (-1, -1), 6),
-                        ("BOTTOMPADDING", (0, 0), (-1, -1), 6),
-                    ]
-                ),
-            ),
-            Spacer(1, 10 * mm),
-            p(
-                "Current pre-submission evidence. It records verified results and explicit gaps; it is not a grade, proof of future sprint completion, proof of instructor approval, or an LMS receipt.",
-                "CoverSub",
-            ),
-            PageBreak(),
-        ]
-    )
 
-    story.append(p("Executive evidence status", "Part"))
-    status_rows = [
-        ("1", "UI and responsive design", "PASS", "Real desktop/mobile captures and multi-width browser QA"),
-        ("2", "Six required sections", "PASS", "Screenshots 01-07 and link/menu audit"),
-        ("3", "PHP validation", "PASS", "HTTP flow, screenshots and 13 tests"),
-        ("4", "Jira backlog", "PASS", "QPOS has 32 issues: 7 Epics, 15 Stories, 5 Tasks, 5 Subtasks"),
-        ("5", "Two sprints", "PARTIAL", "Sprint 1 active; Sprint 2 planned; closures remain"),
-        ("6", "Bugs/reports/retros", "PARTIAL", "Genuine work only; reports and retros remain"),
-        ("7", "Repository/integration", "PASS", "Public repo and QPOS-23 Development PR link"),
-        ("8", "Branches/commits", "PASS", "QPOS-19, QPOS-23 and QPOS-24 development evidence"),
-        ("9", "PRs/reviews", "BLOCKED", "Four open green PRs; no qualifying approval or merge"),
-        ("10", "Participation", "BLOCKED", "Solo exception not confirmed"),
-        ("11", "CI workflow", "PASS", "Remote run 45043988754 succeeded"),
-        ("12", "PHP lint", "PASS", "17/17 tracked files on open PR"),
-        ("13", "Automated tests", "PASS", "13/13 hardened cases on open PR"),
-        ("14", "CI fail/fix", "PASS", "Failed run 45110283311; fixed run 45110435088"),
-        ("15", "Submission package", "PARTIAL", "Refreshed artifacts; identifiers/submission remain"),
-        ("16", "Live viva", "PARTIAL", "Preparation only"),
+    # Cover
+    story += [
+        Spacer(1, 14 * mm),
+        p("FAST NATIONAL UNIVERSITY OF COMPUTER AND EMERGING SCIENCES", "CoverKicker"),
+        p("Faisalabad Campus", "CoverSub"),
+        Spacer(1, 9 * mm),
+        p("QUICKPOS", "CoverTitle"),
+        p("Semester Project - Evidence Report", "CoverTitle"),
+        Spacer(1, 5 * mm),
+        p("Fundamentals of Software Project Management", "CoverSub"),
+        p("CS4002 | Fall 2026", "CoverSub"),
+        Spacer(1, 8 * mm),
+        styled_table([
+            ["Submitted By", "Shawal Ahmad"],
+            ["Roll Number", "22F-3303"],
+            ["Class / Section", "BCS-9C"],
+            ["Group Description", "Approved Solo Project (student-reported; documentary proof not included)"],
+            ["GitHub Work Identity 1", "Shawal Ahmad - ShawalAhmad10"],
+            ["GitHub Work Identity 2", "Shawal Ahmad - ShawalAhmad97"],
+            ["Identity Disclosure", "Both GitHub accounts belong to the same enrolled student."],
+            ["Submitted To", "Miss Maham Saleem"],
+            ["Preparation Date", "23 November 2026"],
+        ], [47 * mm, 118 * mm], header=False),
+        Spacer(1, 8 * mm),
+        p("Integration candidate status", "Subhead"),
+        p("The source represented in this report combines the genuine changes from PRs #2, #3, #4 and #1 on the feature/project-documentation branch. It is verified and green, but it is not final merged main because qualifying PR review evidence is not present.", "Callout"),
+        PageBreak(),
     ]
-    table_data = [[p("Task", "TableHeaderQ"), p("Requirement", "TableHeaderQ"), p("Status", "TableHeaderQ"), p("Evidence / gap", "TableHeaderQ")]]
-    for number, requirement, status, evidence in status_rows:
-        table_data.append([p(number, "SmallQ"), p(requirement, "SmallQ"), p(f'<font color="{status_color(status).hexval()}"><b>{status}</b></font>', "SmallQ"), p(evidence, "SmallQ")])
-    story.append(
-        Table(
-            table_data,
-            colWidths=[12 * mm, 48 * mm, 28 * mm, 77 * mm],
-            repeatRows=1,
-            style=TableStyle(
-                [
-                    ("BACKGROUND", (0, 0), (-1, 0), NAVY),
-                    ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-                    ("GRID", (0, 0), (-1, -1), 0.35, colors.HexColor("#CBD5E1")),
-                    ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                    ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, LIGHT]),
-                    ("LEFTPADDING", (0, 0), (-1, -1), 4),
-                    ("RIGHTPADDING", (0, 0), (-1, -1), 4),
-                    ("TOPPADDING", (0, 0), (-1, -1), 4),
-                    ("BOTTOMPADDING", (0, 0), (-1, -1), 4),
-                ]
-            ),
-        )
-    )
-    story.extend([Spacer(1, 6 * mm), p("Contributor disclosure", "Task")])
-    story.append(p("Shawal Ahmad is the only identified student contributor. ShawalAhmad10 is the primary GitHub account. ShawalAhmad97 is controlled by the same person and is not a second student or independent reviewer. AI tools assisted development and documentation; the student remains responsible for correctness, understanding and the live viva."))
-    story.append(PageBreak())
 
-    story.extend([p("Part A - QuickPOS website development", "Part"), p("Task 1 - Product design and responsive UI - PASS", "Task")])
-    story.append(p("The custom PHP landing page has a consistent design system, an original HTML/CSS/SVG POS dashboard and accessible responsive layouts. Browser QA found no horizontal overflow at 320, 375, 768, 1280 or 1440 pixels."))
-    story.extend(evidence_image("01-desktop-full-1280.png", "Figure A1. Complete desktop page at 1280px.", 185 * mm))
-    story.append(PageBreak())
-    story.extend(evidence_image("02-mobile-full-375.png", "Figure A2. Complete mobile page at 375px.", 215 * mm))
-    story.append(PageBreak())
-    story.extend([p("Task 2 - Six required sections - PASS", "Task"), p("Header/Navigation, Hero, Features, Pricing, Contact and Footer are implemented. Navigation and CTAs have meaningful destinations; the mobile menu supports Escape and focus return.")])
-    story.extend(evidence_image("03-pricing-1280.png", "Figure A3. Illustrative Basic, Pro and Enterprise pricing.", 150 * mm))
-    story.extend(evidence_image("07-mobile-menu-open-375.png", "Figure A4. Accessible mobile menu open at 375px.", 125 * mm))
-    story.append(PageBreak())
-    story.extend([p("Task 3 - PHP contact form and validation - PASS", "Task"), p("Invalid input returns HTTP 422 with field-specific errors and safely retained values. Valid input redirects with HTTP 303 to a one-time confirmation. The form does not email or permanently save submissions.")])
-    story.extend(evidence_image("05-validation-errors-1280.png", "Figure A5. Server-side validation errors with the selected plan retained.", 120 * mm))
-    story.extend(evidence_image("06-thank-you-1280.png", "Figure A6. Honest one-time confirmation after valid input.", 110 * mm))
-    story.append(PageBreak())
-
-    story.extend([p("Part B - Jira Scrum", "Part")])
-    story.extend([p("Task 4 - Jira backlog - VERIFIED SETUP", "Task"), p(f"The real QPOS Scrum project at {link('https://shawalahmad97.atlassian.net/jira/software/projects/QPOS', 'Jira QPOS')} contains 32 issues (QPOS-1 through QPOS-32): seven Epics, fifteen Stories, five Tasks and five Subtasks. Final submission still needs readable backlog, Epic and two detailed-story screenshots.")])
-    story.extend([p("Task 5 - Two sprints - IN PROGRESS", "Task"), p("Sprint 1 is active for 23-29 November 2026. Sprint 2 is planned for 30 November-6 December 2026. Neither sprint is falsely reported closed; both real summaries remain future evidence.")])
-    story.extend([p("Task 6 - Bugs, progress and retrospectives - PARTIAL", "Task"), p("Only genuine Jira and engineering activity is recorded. Sprint reports and both retrospectives must be completed from actual events after their real closure dates.")])
-
-    story.extend([p("Part C - GitHub collaboration and Jira integration", "Part")])
-    story.extend([p("Task 7 - Repository, README and integration - VERIFIED", "Task"), p(f"The public repository is live at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM')}. Jira QPOS-23's Development field exposes one open GitHub pull request, verifying real integration.")])
-    story.extend([p("Task 8 - Branches and meaningful commits - VERIFIED", "Task"), p("PR 2 uses QPOS-23, PR 3 uses QPOS-19 and PR 4 uses QPOS-24. The already-complete source remains one truthful baseline rather than fabricated historical commits.")])
-    story.extend([p("Task 9 - Pull requests and code review - BLOCKED", "Task"), p(f"Four genuine pull requests are open: {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1', 'PR 1')}, {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/2', 'PR 2')}, {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/3', 'PR 3')} and {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/4', 'PR 4')}. All latest verified checks pass. AI-assisted technical comments are preserved but are not independent approvals. No PR is merged.")])
-    story.extend([p("Task 10 - Balanced participation - BLOCKED", "Task"), p("Only Shawal Ahmad is identified. The secondary account is the same person and cannot satisfy independent contribution or review requirements.")])
-    story.append(PageBreak())
-
-    story.extend([Spacer(1, 8 * mm), p("Part D - Tests and GitHub Actions CI", "Part")])
-    story.extend([p("Task 11 - Workflow and triggers - PASS", "Task"), p(f"The workflow uses Ubuntu and PHP 8.3 and runs on main, feature branches, bugfix branches and pull requests targeting main. Passing evidence: {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754', 'Actions run 45043988754')}.")])
-    story.extend([p("Task 12 - Automated PHP syntax checks - PASS ON OPEN PR", "Task"), p("The workflow discovers every tracked PHP path with git ls-files and fails if none exist or any lint fails. All 17 tracked PHP files pass.")])
-    story.extend([p("Task 13 - Automated contact-form tests - PASS ON OPEN PR", "Task"), p("The 13-case dependency-free suite treats warnings/notices as failures and proves exact maximum-length fixtures. Result: 13/13.")])
-    story.extend([p("Task 14 - CI failure, fix and passing evidence - VERIFIED", "Task"), p(f"The explicitly labeled controlled exercise failed truthfully at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311', 'run 45110283311')} with 13/14 tests and nonzero exit. The corrective commit removed only the sentinel; {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088', 'run 45110435088')} passed. Main stayed green.")])
-    ci_table = Table(
-        [
-            [p("Check", "TableHeaderQ"), p("Result", "TableHeaderQ")],
-            [p("Local PHP lint", "SmallQ"), p("PASS - 17 files", "SmallQ")],
-            [p("Local tests", "SmallQ"), p("PASS - 13/13", "SmallQ")],
-            [p("GitHub Actions main", "SmallQ"), p("PASS - run 45043988754", "SmallQ")],
-            [p("Controlled CI exercise", "SmallQ"), p("FAIL 45110283311 -> PASS 45110435088", "SmallQ")],
-            [p("Secret/key scan", "SmallQ"), p("PASS - no findings", "SmallQ")],
-        ],
-        colWidths=[80 * mm, 80 * mm],
-        style=TableStyle(
-            [
-                ("BACKGROUND", (0, 0), (-1, 0), NAVY),
-                ("TEXTCOLOR", (0, 0), (-1, 0), colors.white),
-                ("GRID", (0, 0), (-1, -1), 0.4, colors.HexColor("#CBD5E1")),
-                ("ROWBACKGROUNDS", (0, 1), (-1, -1), [colors.white, LIGHT]),
-                ("VALIGN", (0, 0), (-1, -1), "TOP"),
-                ("TOPPADDING", (0, 0), (-1, -1), 5),
-                ("BOTTOMPADDING", (0, 0), (-1, -1), 5),
-            ]
-        ),
-    )
-    story.extend([Spacer(1, 6 * mm), ci_table, PageBreak()])
-
-    story.extend([p("Part E - Submission and live evaluation", "Part")])
-    story.extend([p("Task 15 - Submission package and evidence report - PARTIAL", "Task"), p("The source ZIP, this PDF and viva notes are refreshed from current evidence. Group ID, roll number, final review/merge/sprint evidence and the LMS receipt remain absent.")])
-    story.extend([p("Task 16 - Live viva - PARTIAL", "Task"), p("Viva preparation covers the website, validation, security, tests, CI and governance disclosures. The actual live evaluation has not occurred.")])
-    story.extend([p("Explicit evidence gaps", "Task")])
-    gaps = [
-        "Approved Group ID and roll number.",
-        "Readable final Jira backlog, Epic and two-story screenshots.",
-        "Real Sprint 1 and Sprint 2 closures, reports and retrospectives.",
-        "Instructor-approved solo-group and qualifying-review arrangements.",
-        "Four legitimate reviews and authorized merges, then final main CI/Jira verification.",
-        "Final submission receipt and live-viva result.",
+    # Executive summary and overview
+    story += [
+        p("Executive Summary", "Section"),
+        p("QuickPOS is a responsive PHP marketing landing page for a fictional point-of-sale product. The project combines a six-section website, server-side contact validation, a Jira Scrum backlog, Jira-keyed GitHub development, automated PHP tests and a GitHub Actions workflow."),
+        p("The current candidate preserves the accepted website and integrates the real QPOS-23 Jira linkage documentation, QPOS-19 validation-test hardening, QPOS-24 repository-wide PHP linting and refreshed academic evidence. Local verification passes 17 PHP lint checks and 13 automated validation tests. All four open PRs have passing CI. No independent review or merge is claimed."),
+        p("Project Overview and Objectives", "Section"),
+        styled_table([
+            ["Objective", "Verified implementation"],
+            ["Product", "Professional QuickPOS landing page with Header, Hero, Features, Pricing, Contact and Footer."],
+            ["Backend behavior", "PHP POST validation, field-specific errors and one-time thank-you flow; no database or email delivery."],
+            ["Project management", "QPOS Scrum project with 32 issues and two correctly dated sprints."],
+            ["Traceability", "QPOS keys appear in real branches, commits and PRs; QPOS-23 shows linked development activity."],
+            ["Quality", "Repository-wide PHP lint, 13 executable validation cases and controlled failed-to-fixed CI evidence."],
+            ["Delivery", "Verified integration-candidate ZIP, evidence report, viva notes and explicit remaining gaps."],
+        ], [45 * mm, 120 * mm]),
+        p("Technology Stack and Architecture", "Section"),
+        styled_table([
+            ["Layer", "Technology / responsibility"],
+            ["Presentation", "Semantic HTML5, custom CSS3, minimal vanilla JavaScript and responsive layouts."],
+            ["Server", "PHP 8.3 entry points and reusable validation/helper modules."],
+            ["Application structure", "public/ web root, src/ reusable code and views, tests/ dependency-free runner."],
+            ["Security", "Output encoding, normalized input, CSP/clickjacking/MIME/referrer headers and hardened short-lived sessions."],
+            ["Automation", "GitHub Actions on Ubuntu with PHP setup, all-tracked-file lint and automated tests."],
+            ["Management", "Jira QPOS board 35; GitHub for Atlassian development linkage."],
+        ], [45 * mm, 120 * mm]),
+        PageBreak(),
     ]
-    for item in gaps:
-        story.append(p(f"- {item}"))
-    story.extend([Spacer(1, 5 * mm), p("Integrity note", "Task"), p("No Group ID, roll number, sprint closure, second student, reviewer approval, merge, grade or submission receipt has been invented. The controlled failed CI run is labeled accurately and linked. This report stays incomplete wherever authoritative evidence does not yet exist.")])
 
-    doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
+    # Part A
+    story += [
+        p("Part A - QuickPOS Website Development", "Section"),
+        *task("Task 1 - Product Design and Responsive UI", "PASS",
+              "The accepted custom interface uses a consistent visual system and original POS dashboard mockup. QA found no unintended horizontal overflow at approximately 375px, 768px and 1280px, with additional checks at 320px and 1440px."),
+        *evidence_image("01-desktop-full-1280.png", "Figure A1. Complete desktop page at 1280px.", 150 * mm, 160 * mm),
+        PageBreak(),
+        p("Part A - Responsive Detail", "Section"),
+        *evidence_image("03b-pricing-375.png", "Figure A2. Readable mobile pricing layout at 375px.", 70 * mm, 178 * mm),
+        Spacer(1, 4 * mm),
+        p("The representative mobile capture keeps plan hierarchy, pricing and controls readable without horizontal scrolling. The mobile navigation evidence is shown on the following page."),
+        PageBreak(),
+        *task("Task 2 - Required Landing-Page Sections", "PASS",
+              "Header/Navigation, Hero, Features, Pricing, Contact and Footer are implemented. Navigation and CTA targets were checked; the mobile menu supports Escape and focus return."),
+        *evidence_image("03-pricing-1280.png", "Figure A3. Distinct Basic, Pro and Enterprise plans.", 165 * mm, 112 * mm),
+        Spacer(1, 4 * mm),
+        *evidence_image("07-mobile-menu-open-375.png", "Figure A4. Accessible mobile navigation and Hero detail.", 72 * mm, 92 * mm),
+        PageBreak(),
+        Spacer(1, 12 * mm),
+        p("Part A - PHP Contact Validation", "Section"),
+        *task("Task 3 - PHP Contact Form and Server-Side Validation", "PASS",
+              "The form uses POST and validates required name, email and message values plus email format. Invalid requests return understandable field errors; valid requests redirect with HTTP 303 to a one-time confirmation. No database, real email, authentication or permanent submission storage is used."),
+        *evidence_image("05-validation-errors-1280.png", "Figure A5. Server-side validation errors with retained safe values.", 165 * mm, 103 * mm),
+        Spacer(1, 5 * mm),
+        *evidence_image("06-thank-you-1280.png", "Figure A6. Honest one-time confirmation after valid input.", 165 * mm, 86 * mm),
+        PageBreak(),
+    ]
+
+    # Part B
+    story += [
+        p("Part B - Jira Agile Project Management", "Section"),
+        p("The following evidence is derived from the authorized Jira connector on 23 November 2026. It is presented as labeled data, not as an invented interface screenshot.", "Callout"),
+        *task("Task 4 - Jira Setup, Epics and Backlog", "PASS",
+              "The real QuickPOS - SPM Jira project (key QPOS) contains 32 issues assigned to Shawal Ahmad. The hierarchy includes the six required functional Epics plus Testing and CI."),
+        styled_table([
+            ["Issue type", "Count", "Evidence"],
+            ["Epic", "7", "Navigation/Header, Hero, Features, Pricing, Contact, Footer, Testing and CI"],
+            ["Story", "15", "User-facing and quality stories with priority, assignee and estimates"],
+            ["Task", "5", "Repository, Jira integration, PHP lint, evidence and package work"],
+            ["Subtask", "5", "Implementation and verification work below parent items"],
+            ["Total", "32", "QPOS-1 through QPOS-32"],
+        ], [35 * mm, 20 * mm, 110 * mm]),
+        p("Screenshot-only gap: Jira backlog, Epic and two detailed-story UI screenshots were not captured in this milestone; connector-derived data and live URLs are included instead.", "Callout"),
+        *task("Task 5 - Two Sprints: Planning and Development", "PARTIAL",
+              "Exactly two one-week sprints exist with the assignment dates and clear goals. Sprint 1 is active; Sprint 2 is future. Neither sprint is prematurely reported complete."),
+        styled_table([
+            ["Sprint", "ID / state", "Dates", "Current evidence"],
+            ["QPOS Sprint 1", "69 / active", "23-29 Nov 2026", "9 issues: 3 In Progress, 6 To Do, 0 Done"],
+            ["QPOS Sprint 2", "70 / future", "30 Nov-6 Dec 2026", "Planned with testing, CI and evidence goal"],
+        ], [38 * mm, 30 * mm, 35 * mm, 62 * mm]),
+        *task("Task 6 - Risk/Bug Tracking, Progress and Retrospectives", "PARTIAL",
+              "The board truthfully shows current progress. No fabricated bug is added. Sprint reports, closure evidence and retrospectives remain future because both sprint end dates have not occurred."),
+        PageBreak(),
+    ]
+
+    # Part C
+    story += [
+        p("Part C - GitHub Collaboration and Jira Integration", "Section"),
+        *task("Task 7 - Repository, README and Jira Integration", "PASS",
+              f"The public repository is {link('https://github.com/ShawalAhmad10/QuickPOS-SPM')}. QPOS-23 displays linked GitHub development activity. The README contains purpose, identity, technology, local run, test and CI information. The final main branch is still the stable baseline."),
+        *task("Task 8 - Jira-Linked Branches and Meaningful Commits", "PASS",
+              "Real Jira keys are used in the QPOS-23, QPOS-19 and QPOS-24 development branches, commits and PRs. The already-complete website was published as one truthful initial baseline rather than divided into fabricated historical work."),
+        styled_table([
+            ["PR", "Jira / purpose", "Head", "Latest PR CI"],
+            ["#2", "QPOS-23 Jira development integration", "8024ec2", "45109153077 - PASS"],
+            ["#3", "QPOS-19 validation test hardening", "9d17c8c", "45112783653 - PASS"],
+            ["#4", "QPOS-24 repository-wide PHP lint", "881232b", "45112936298 - PASS"],
+            ["#1", "Combined documentation/evidence candidate", "7780e05", "45114004735 - PASS"],
+        ], [14 * mm, 72 * mm, 25 * mm, 54 * mm]),
+        *task("Task 9 - Pull Requests and Code Review", "BLOCKED",
+              "Four meaningful PRs are open, mergeable and green. AI-assisted technical findings are visibly labeled and do not count as independent human approvals. GitHub reports no qualifying reviews; therefore no PR is merged. Prepared order: #2, #3, #4, then #1."),
+        *task("Task 10 - Balanced Participation and GitHub Activity", "PARTIAL",
+              "This is an Approved Solo Project according to the student; documentary approval is not included in the repository. ShawalAhmad10 and ShawalAhmad97 are two work identities of the same enrolled student, Shawal Ahmad (22F-3303), not separate contributors. The student remains responsible for explaining all work in the viva."),
+        p("Screenshot-only gap: GitHub branch/PR UI screenshots were not captured. The report provides public PR URLs, immutable head SHAs and GitHub CLI/API check results.", "Callout"),
+        PageBreak(),
+    ]
+
+    # Part D
+    story += [
+        p("Part D - GitHub Actions and Automated Testing", "Section"),
+        *task("Task 11 - CI Workflow File and Triggers", "PASS",
+              "The workflow at .github/workflows/ci.yml uses a GitHub-hosted Ubuntu runner and PHP 8.3. It runs on pushes to feature/**, bugfix/** and main, and on pull requests targeting main."),
+        *task("Task 12 - Automated PHP Syntax Checks", "PASS",
+              "CI uses git ls-files to discover every tracked .php file, fails if none are found and propagates any php -l failure. The verified candidate contains 17 tracked PHP files and all lint cleanly."),
+        *task("Task 13 - Automated Contact-Form Tests", "PASS",
+              "The dependency-free suite contains 13 cases, including the four mandatory scenarios, whitespace/missing/non-string handling, exact length boundaries and normalization behavior. PHP warnings/notices and failed assertions produce nonzero exit status."),
+        *task("Task 14 - CI Failure, Fix and Passing Evidence", "PASS",
+              f"The controlled negative exercise failed truthfully at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311', 'run 45110283311')} with 13/14 tests. The corrective commit removed only the sentinel and {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088', 'run 45110435088')} passed. Stable main remained green."),
+        styled_table([
+            ["Verification", "Observed result", "Evidence"],
+            ["Candidate PHP lint", "PASS - 17/17", "Local repository-wide run"],
+            ["Candidate automated tests", "PASS - 13/13", "php tests/run.php"],
+            ["Stable main CI", "PASS", "Actions run 45043988754"],
+            ["Controlled negative CI", "FAIL as intended", "Actions run 45110283311"],
+            ["Corrected CI", "PASS", "Actions run 45110435088"],
+            ["PR #1 candidate CI", "PASS", "Actions run 45114004735"],
+        ], [45 * mm, 42 * mm, 78 * mm]),
+        p("Screenshot-only gap: Actions UI captures were not generated. The public run links and GitHub API results are the authoritative evidence in this candidate report.", "Callout"),
+        PageBreak(),
+    ]
+
+    # Part E
+    story += [
+        Spacer(1, 12 * mm),
+        Indenter(left=10 * mm),
+        p("Part E - Submission and Viva Readiness", "Section"),
+        *task("Task 15 - Submission Package and Evidence Report", "PARTIAL",
+              "The package contains the verified integration-candidate source, README, tests, workflow, evidence PDF, final audit and viva notes. The ZIP is not represented as merged main. Final LMS submission and evaluator access confirmation remain external activities."),
+        *task("Task 16 - Live Viva and Evaluation", "PARTIAL",
+              "Viva notes cover the product, PHP validation, architecture, Jira, PR traceability, tests, CI failure/fix evidence, identity disclosure and remaining gaps. The live evaluation has not yet occurred."),
+        p("Submission Candidate Contents", "Subhead"),
+        styled_table([
+            ["Artifact", "Purpose / state"],
+            ["QuickPOS_Source.zip", "Verified integration candidate, not merged main"],
+            ["QuickPOS_Evidence_Report.pdf", "Tasks 1-16 report with genuine website evidence and API-derived tables"],
+            ["QuickPOS_Viva_Notes.md", "Concise live demonstration and explanation guide"],
+            ["QuickPOS_Final_Audit.md", "Requirement-by-requirement PASS/PARTIAL/BLOCKED/NOT VERIFIED audit"],
+            ["SHA256SUMS.txt", "SHA-256 integrity values for the four deliverables"],
+        ], [50 * mm, 105 * mm]),
+        p("Academic and identity statement", "Subhead"),
+        p("Submitted by Shawal Ahmad, roll number 22F-3303, BCS-9C, to Miss Maham Saleem. The group description is Approved Solo Project based on the student's report. No documentary approval attachment, second enrolled student, independent reviewer, PR merge, sprint closure, grade or LMS receipt is fabricated."),
+        Indenter(left=-10 * mm),
+        PageBreak(),
+    ]
+
+    # Traceability matrix
+    story += [p("Requirements Traceability Matrix - Tasks 1-16", "Section")]
+    matrix = [
+        ["#", "Requirement", "Status", "Evidence / exact outstanding action"],
+        ["1", "Responsive product UI", "PASS", "Desktop and mobile evidence; multi-width QA complete."],
+        ["2", "Six required sections", "PASS", "All sections and CTA/navigation behavior verified."],
+        ["3", "PHP validation", "PASS", "Real invalid/valid flows and 13 automated cases."],
+        ["4", "Jira backlog", "PASS", "32 issues with required hierarchy; capture final Jira UI screenshots."],
+        ["5", "Two sprints", "PARTIAL", "Sprint 1 active; Sprint 2 future; close only on real dates."],
+        ["6", "Bugs/progress/retros", "PARTIAL", "Complete reports and two retrospectives after sprint closures."],
+        ["7", "Repo/README/integration", "PASS", "Public repo and QPOS-23 development link verified."],
+        ["8", "Branches/commits", "PASS", "QPOS-keyed development evidence present."],
+        ["9", "PRs/reviews", "BLOCKED", "Obtain qualifying review evidence and merge four PRs."],
+        ["10", "Participation", "PARTIAL", "Solo status reported; documentary proof/review arrangement not included."],
+        ["11", "CI workflow", "PASS", "Required triggers, Ubuntu and PHP setup verified."],
+        ["12", "PHP lint", "PASS", "17/17 tracked PHP files pass."],
+        ["13", "Automated tests", "PASS", "13/13 cases pass and failure propagates."],
+        ["14", "Failed-to-fixed CI", "PASS", "Runs 45110283311 and 45110435088."],
+        ["15", "ZIP/report", "PARTIAL", "Candidate generated; final merged source and LMS receipt remain."],
+        ["16", "Live viva", "NOT VERIFIED", "Attend and complete the live evaluation."],
+    ]
+    data = []
+    for row_index, row in enumerate(matrix):
+        cells = []
+        for col_index, value in enumerate(row):
+            if row_index == 0:
+                cells.append(p(value, "TableHeaderQ"))
+            elif col_index == 2:
+                color = status_color(value).hexval()
+                cells.append(p(f'<font color="{color}"><b>{value}</b></font>', "TinyQ"))
+            else:
+                cells.append(p(value, "TinyQ"))
+        data.append(cells)
+    story.append(Table(
+        data, colWidths=[9 * mm, 48 * mm, 24 * mm, 84 * mm], repeatRows=1,
+        style=TableStyle([
+            ("BACKGROUND", (0, 0), (-1, 0), NAVY),
+            ("TEXTCOLOR", (0, 0), (-1, 0), WHITE),
+            ("GRID", (0, 0), (-1, -1), 0.35, LINE),
+            ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ("ROWBACKGROUNDS", (0, 1), (-1, -1), [WHITE, LIGHT]),
+            ("LEFTPADDING", (0, 0), (-1, -1), 3),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 3),
+            ("TOPPADDING", (0, 0), (-1, -1), 3),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 3),
+        ])
+    ))
+    story += [PageBreak(), p("Evidence and References", "Section")]
+    references = [
+        ["Evidence", "Verified reference"],
+        ["GitHub repository", link("https://github.com/ShawalAhmad10/QuickPOS-SPM")],
+        ["Jira project", link("https://shawalahmad97.atlassian.net/jira/software/projects/QPOS")],
+        ["PR #1", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1")],
+        ["PR #2", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/2")],
+        ["PR #3", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/3")],
+        ["PR #4", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/4")],
+        ["Stable main CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754")],
+        ["Controlled failed CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311")],
+        ["Corrected passing CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088")],
+        ["Final candidate CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45114004735")],
+        ["Website evidence", "docs/evidence/website/01 through 07"],
+        ["Official requirements", "CS4002 QuickPOS Semester Project brief, 7 pages"],
+    ]
+    story.append(styled_table(references, [50 * mm, 115 * mm]))
+    story += [
+        p("Accurate Remaining Gaps", "Section"),
+        p("1. Capture readable Jira backlog, Epic, detailed-story and sprint-board UI screenshots.", "BodyQ"),
+        p("2. Capture readable GitHub PR/branch and Actions UI screenshots if required by the evaluator.", "BodyQ"),
+        p("3. Obtain and retain the actual qualifying PR review arrangement and visible review evidence.", "BodyQ"),
+        p("4. Merge PRs #2, #3, #4 and #1 only when authorized; then verify final main CI and Jira linkage.", "BodyQ"),
+        p("5. Complete Sprint 1 and Sprint 2 on their real dates, then add sprint reports and retrospectives.", "BodyQ"),
+        p("6. Retain documentary solo-project approval if available; this report records only the student's statement.", "BodyQ"),
+        p("7. Submit the final merged-main ZIP/report through the designated channel and retain the receipt.", "BodyQ"),
+        p("8. Complete the live viva.", "BodyQ"),
+        Spacer(1, 5 * mm),
+        p("Final integrity statement", "Task"),
+        p("This report does not claim a second enrolled student, independent approval, merged PRs, completed future sprints, a final grade or an LMS submission receipt. API-derived Jira and GitHub facts are labeled as data rather than interface screenshots. Missing screenshot-only evidence is explicitly reported instead of fabricated."),
+    ]
+
+    doc.build(story, onFirstPage=page_header_footer, onLaterPages=page_header_footer)
+    copy2(OUTPUT, SUBMISSION_OUTPUT)
     print(OUTPUT)
+    print(SUBMISSION_OUTPUT)
 
 
 if __name__ == "__main__":

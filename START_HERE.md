@@ -7,7 +7,7 @@ This archive is a **planning and repository starter kit**, NOT a completed app, 
 
 ## What to do next
 1. Extract this ZIP **directly** into `D:\projects\QuickPOS-SPM`. Confirm `CLAUDE.md` and `AGENTS.md` are at the project root.
-2. In Codex, **Open Folder** `D:\projects\QuickPOS-SPM` and run `prompts/00_CODEX_BOOTSTRAP.md` (copy its prompt text into Codex). It should verify identities, initialize Git/Jira if permitted, and create real issue keys. Until approved solo-group arrangements are known, it must not invent a second member or reviews.
+2. In Codex, **Open Folder** `D:\projects\QuickPOS-SPM` and use the current handoff. Approved Solo Project status is student-reported; both GitHub accounts belong to Shawal Ahmad (22F-3303). Never invent a second member or independent review.
 3. Start Claude Code **in the same folder**. Give it `prompts/01_CLAUDE_SPRINT1.md` during Sprint 1 (23–29 Nov). Claude reads `CLAUDE.md`, `docs/PRD.md`, `docs/DESIGN.md` and `docs/ARCHITECTURE.md`.
 4. Codex handles GitHub/Jira/CI and integrates accepted increments. On 30 Nov, give Claude `prompts/02_CLAUDE_SPRINT2.md`, then `prompts/03_CLAUDE_QA.md`.
 5. Codex uses `prompts/04_CODEX_INTEGRATION.md` across the sprints and `prompts/05_CODEX_SUBMISSION.md` from 7–10 December.

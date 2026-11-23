@@ -1,19 +1,23 @@
 # QuickPOS — POS SaaS Landing Page
 
-**CS4002 Fundamentals of Software Project Management | FAST-NUCES Chiniot-Faisalabad | Fall 2026**
+**CS4002 Fundamentals of Software Project Management | FAST-NUCES Faisalabad Campus | BCS-9C | Fall 2026**
 
-> **Verified 23 November 2026:** the accepted PHP website is published; `main` is green; Jira project QPOS has 32 issues and Sprint 1 is active. Four genuine PRs are open and green, but none is merged because the required instructor-approved solo review arrangement is still unconfirmed.
+> **Verified 23 November 2026:** the accepted PHP website is published; `main` is green; Jira project QPOS has 32 issues and Sprint 1 is active. Four genuine PRs are open and green. Approved Solo Project status is student-reported; merges remain pending because the qualifying PR-review arrangement is not evidenced.
+
+The complete tested integration candidate is on `feature/project-documentation`; see `INTEGRATION_CANDIDATE.md`. It is intentionally separate from `main` until qualifying review evidence exists.
 
 QuickPOS is a responsive PHP marketing site for a fictional point-of-sale SaaS product. It is not a working POS backend. The project demonstrates the six required page sections, server-side contact validation, automated tests, GitHub Actions, Jira Scrum activity and evidence-backed engineering workflow.
 
 ## Team and governance
 
-- Student/project owner: **Shawal Ahmad**. Roll number and approved Group ID have not been supplied.
+- Student/project owner: **Shawal Ahmad (22F-3303)**.
+- Group description: **Approved Solo Project** (student-reported; documentary proof is not included in this repository).
+- Submitted to: **Miss Maham Saleem**.
 - Primary GitHub account: `ShawalAhmad10`.
 - `ShawalAhmad97` is controlled by the same person and is not a second student or independent reviewer.
 - Repository: https://github.com/ShawalAhmad10/QuickPOS-SPM
 - Jira project: https://shawalahmad97.atlassian.net/jira/software/projects/QPOS
-- Solo-group and alternative-review approval: not yet evidenced; all PRs therefore remain open.
+- The solo-project approval is reported by the student. The qualifying PR-review arrangement is not evidenced, so all PRs remain open.
 
 ## Scope
 
@@ -55,6 +59,6 @@ AI-assisted technical findings are recorded on each PR and explicitly are not in
 
 ## Academic integrity
 
-No second contributor, independent approval, merge, sprint closure, Group ID, roll number or submission receipt is claimed without evidence. The student must understand and demonstrate the implementation and workflow in the live viva.
+Both GitHub accounts belong to Shawal Ahmad (22F-3303); neither is presented as a second student or independent reviewer. No independent approval, merge, sprint closure, documentary solo-approval proof or submission receipt is claimed without evidence.
 
 **Deadline:** 10 December 2026, 11:59 PM PKT. **Authoritative brief:** `docs/reference/CS4002_QuickPOS_Semester_Project_BCS9C_Fall2026.pdf`.

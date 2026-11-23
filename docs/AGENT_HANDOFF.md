@@ -1,10 +1,10 @@
 # Agent Handoff — QuickPOS
 
-**Updated:** 2026-11-22 21:39 PKT  
-**Stage:** GITHUB BASELINE AND CI LIVE; DOCUMENTATION PR OPEN; JIRA BLOCKED  
-**Implementation:** WEBSITE VERIFIED; BASELINE PUBLISHED; DOCUMENTATION PR UNMERGED  
-**Jira/GitHub actions:** GITHUB ACTIVE; JIRA CONNECTION UNAVAILABLE  
-**Solo-group approval:** NOT CONFIRMED
+**Updated:** 2026-11-23 10:13 PKT
+**Stage:** VERIFIED INTEGRATION CANDIDATE; FOUR PRS OPEN; FINAL PACKAGE V2
+**Implementation:** WEBSITE PRESERVED; CANDIDATE TESTED; MAIN UNCHANGED
+**Jira/GitHub actions:** QPOS ACTIVE; SPRINT 1 ACTIVE; ALL PR CHECKS GREEN
+**Solo-project approval:** STUDENT-REPORTED; DOCUMENTARY PROOF NOT INCLUDED
 
 ## Current source of truth
 - Official PDF: `docs/reference/CS4002_QuickPOS_Semester_Project_BCS9C_Fall2026.pdf`.
@@ -18,7 +18,7 @@ A documentation starter kit and empty implementation directories were prepared o
 The local workspace now contains Claude's six-section PHP website. Codex independently verified its principal Part A flows on 2026-11-22 and added the local automated test/CI foundation. This is not a claim that a sprint, commit, remote CI run or graded evidence package is complete.
 
 ## Next owner / next phase
-**Codex — authorized Jira/GitHub integration** after the approved Group ID, Jira access and solo-review arrangement are supplied. Preserve the verified uncommitted implementation until a truthful repository/issue-key strategy is confirmed.
+Obtain the qualifying PR-review arrangement, review and merge in order #2 -> #3 -> #4 -> #1, verify final main CI/Jira linkage, then complete real sprint reports and final LMS submission. The current candidate remains separate from `main`.
 
 ## Handoff entry format
 ### YYYY-MM-DD HH:mm PKT — [agent] — [phase]

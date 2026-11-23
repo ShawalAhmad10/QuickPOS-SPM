@@ -1,6 +1,6 @@
 # Jira Scrum backlog — proposal (not yet created in Jira)
 
-New Jira project title: `QuickPOS - [APPROVED GROUP ID]`; suggested key `QPOS` but **use actual Jira-generated key**. Assignee field should name genuine approved student(s), not a fictional second student. Internal AI workstream can be recorded in task description if desired.
+Actual Jira project: `QuickPOS - SPM`, key `QPOS`, board 35. Group description: `Approved Solo Project` (student-reported). Assignee: Shawal Ahmad (22F-3303). Do not create a fictional second student; both GitHub accounts belong to Shawal Ahmad.
 
 ## Epics (7)
 EP-01 Navigation & Header; EP-02 Hero; EP-03 Features; EP-04 Pricing; EP-05 Contact; EP-06 Footer; EP-07 Testing & CI.
