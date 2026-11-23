@@ -8,8 +8,8 @@
 | 2 | Screenshots 01–07; `docs/WEBSITE_FINAL_QA.md` | YES locally |
 | 3 | Invalid/valid form screenshots; 13-case runner; real 303/422 flow | YES locally |
 | 4 | Jira QPOS; 32 issues QPOS-1–QPOS-32; backlog/type counts verified | YES setup; final screenshots remain |
-| 5 | QPOS Sprint 1 active 23–29 Nov; Sprint 2 planned 30 Nov–6 Dec | IN PROGRESS |
-| 6 | Real issue activity only; retrospectives not yet written | PARTIAL |
+| 5 | QPOS Sprint 1 active 23–29 Nov with 6 Done and 3 In Progress; Sprint 2 planned 30 Nov–6 Dec | IN PROGRESS |
+| 6 | 13 issues Done overall; QPOS-14–QPOS-18 have factual pre-sprint evidence comments and remain To Do; retrospectives not yet written | PARTIAL |
 | 7 | https://github.com/ShawalAhmad10/QuickPOS-SPM and QPOS-23 open-PR Development linkage | YES |
 | 8 | Jira-keyed PRs #2 QPOS-23, #3 QPOS-19, #4 QPOS-24 | YES |
 | 9 | Four open PRs and preserved AI-assisted findings | BLOCKED: no qualifying approval/merge |
@@ -18,7 +18,7 @@
 | 12 | PR #4 repository-wide discovery and 17/17 lint | YES on open PR |
 | 13 | PR #3/#4 hardened runner and 13/13 tests | YES on open PR |
 | 14 | Failed https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311 → fixed https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088 | YES |
-| 15 | Refreshed `output/pdf/QuickPOS_Evidence_Report.pdf`, source ZIP and gap list | PARTIAL: identifiers/submission absent |
+| 15 | Required evidence PDF and source ZIP | PARTIAL: final merged source and LMS submission absent |
 | 16 | `docs/VIVA_PREPARATION.md` and `QuickPOS_Viva_Notes.md` | PREPARED; live viva future |
 
 ## Pull-request evidence

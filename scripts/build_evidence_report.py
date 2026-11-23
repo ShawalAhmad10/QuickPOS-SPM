@@ -1,6 +1,4 @@
 from pathlib import Path
-from shutil import copy2
-
 from PIL import Image as PILImage
 from reportlab.lib import colors
 from reportlab.lib.enums import TA_CENTER, TA_LEFT
@@ -23,7 +21,6 @@ from reportlab.platypus import (
 ROOT = Path(__file__).resolve().parents[1]
 EVIDENCE = ROOT / "docs" / "evidence" / "website"
 OUTPUT = ROOT / "output" / "pdf" / "QuickPOS_Evidence_Report.pdf"
-SUBMISSION_OUTPUT = ROOT / "submission-output" / "QuickPOS_Evidence_Report.pdf"
 
 NAVY = colors.HexColor("#0F172A")
 TEAL = colors.HexColor("#0891B2")
@@ -174,7 +171,6 @@ def task(title, status, body):
 
 def build():
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    SUBMISSION_OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     doc = SimpleDocTemplate(
         str(OUTPUT), pagesize=A4,
         rightMargin=18 * mm, leftMargin=18 * mm,
@@ -224,7 +220,7 @@ def build():
             ["Objective", "Verified implementation"],
             ["Product", "Professional QuickPOS landing page with Header, Hero, Features, Pricing, Contact and Footer."],
             ["Backend behavior", "PHP POST validation, field-specific errors and one-time thank-you flow; no database or email delivery."],
-            ["Project management", "QPOS Scrum project with 32 issues and two correctly dated sprints."],
+            ["Project management", "QPOS Scrum project with 32 issues, 13 Done overall and two correctly dated sprints."],
             ["Traceability", "QPOS keys appear in real branches, commits and PRs; QPOS-23 shows linked development activity."],
             ["Quality", "Repository-wide PHP lint, 13 executable validation cases and controlled failed-to-fixed CI evidence."],
             ["Delivery", "Verified integration-candidate ZIP, evidence report, viva notes and explicit remaining gaps."],
@@ -286,14 +282,14 @@ def build():
         ], [35 * mm, 20 * mm, 110 * mm]),
         p("Screenshot-only gap: Jira backlog, Epic and two detailed-story UI screenshots were not captured in this milestone; connector-derived data and live URLs are included instead.", "Callout"),
         *task("Task 5 - Two Sprints: Planning and Development", "PARTIAL",
-              "Exactly two one-week sprints exist with the assignment dates and clear goals. Sprint 1 is active; Sprint 2 is future. Neither sprint is prematurely reported complete."),
+              "Exactly two one-week sprints exist with the assignment dates and clear goals. Sprint 1 is active with 6 Done and 3 In Progress; Sprint 2 is future. Neither sprint is prematurely reported complete."),
         styled_table([
             ["Sprint", "ID / state", "Dates", "Current evidence"],
-            ["QPOS Sprint 1", "69 / active", "23-29 Nov 2026", "9 issues: 3 In Progress, 6 To Do, 0 Done"],
+            ["QPOS Sprint 1", "69 / active", "23-29 Nov 2026", "9 issues: 6 Done, 3 In Progress"],
             ["QPOS Sprint 2", "70 / future", "30 Nov-6 Dec 2026", "Planned with testing, CI and evidence goal"],
         ], [38 * mm, 30 * mm, 35 * mm, 62 * mm]),
         *task("Task 6 - Risk/Bug Tracking, Progress and Retrospectives", "PARTIAL",
-              "The board truthfully shows current progress. No fabricated bug is added. Sprint reports, closure evidence and retrospectives remain future because both sprint end dates have not occurred."),
+              "The board truthfully shows 13 issues Done overall. QPOS-14 through QPOS-18 contain genuine pre-sprint implementation and QA comments but remain To Do for real Sprint 2 reverification. No fabricated bug is added. Sprint reports, closure evidence and retrospectives remain future because both sprint end dates have not occurred."),
         PageBreak(),
     ]
 
@@ -309,7 +305,7 @@ def build():
             ["#2", "QPOS-23 Jira development integration", "8024ec2", "45109153077 - PASS"],
             ["#3", "QPOS-19 validation test hardening", "9d17c8c", "45112783653 - PASS"],
             ["#4", "QPOS-24 repository-wide PHP lint", "881232b", "45112936298 - PASS"],
-            ["#1", "Combined documentation/evidence candidate", "7780e05", "45114004735 - PASS"],
+            ["#1", "Combined documentation/evidence candidate", "cf54093", "45116680054 - PASS"],
         ], [14 * mm, 72 * mm, 25 * mm, 54 * mm]),
         *task("Task 9 - Pull Requests and Code Review", "BLOCKED",
               "Four meaningful PRs are open, mergeable and green. AI-assisted technical findings are visibly labeled and do not count as independent human approvals. GitHub reports no qualifying reviews; therefore no PR is merged. Prepared order: #2, #3, #4, then #1."),
@@ -337,7 +333,7 @@ def build():
             ["Stable main CI", "PASS", "Actions run 45043988754"],
             ["Controlled negative CI", "FAIL as intended", "Actions run 45110283311"],
             ["Corrected CI", "PASS", "Actions run 45110435088"],
-            ["PR #1 candidate CI", "PASS", "Actions run 45114004735"],
+            ["PR #1 candidate CI", "PASS", "Actions run 45116680054"],
         ], [45 * mm, 42 * mm, 78 * mm]),
         p("Screenshot-only gap: Actions UI captures were not generated. The public run links and GitHub API results are the authoritative evidence in this candidate report.", "Callout"),
         PageBreak(),
@@ -357,9 +353,6 @@ def build():
             ["Artifact", "Purpose / state"],
             ["QuickPOS_Source.zip", "Verified integration candidate, not merged main"],
             ["QuickPOS_Evidence_Report.pdf", "Tasks 1-16 report with genuine website evidence and API-derived tables"],
-            ["QuickPOS_Viva_Notes.md", "Concise live demonstration and explanation guide"],
-            ["QuickPOS_Final_Audit.md", "Requirement-by-requirement PASS/PARTIAL/BLOCKED/NOT VERIFIED audit"],
-            ["SHA256SUMS.txt", "SHA-256 integrity values for the four deliverables"],
         ], [50 * mm, 105 * mm]),
         p("Academic and identity statement", "Subhead"),
         p("Submitted by Shawal Ahmad, roll number 22F-3303, BCS-9C, to Miss Maham Saleem. The group description is Approved Solo Project based on the student's report. No documentary approval attachment, second enrolled student, independent reviewer, PR merge, sprint closure, grade or LMS receipt is fabricated."),
@@ -426,7 +419,7 @@ def build():
         ["Stable main CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754")],
         ["Controlled failed CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311")],
         ["Corrected passing CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088")],
-        ["Final candidate CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45114004735")],
+        ["Final candidate CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45116680054")],
         ["Website evidence", "docs/evidence/website/01 through 07"],
         ["Official requirements", "CS4002 QuickPOS Semester Project brief, 7 pages"],
     ]
@@ -447,9 +440,7 @@ def build():
     ]
 
     doc.build(story, onFirstPage=page_header_footer, onLaterPages=page_header_footer)
-    copy2(OUTPUT, SUBMISSION_OUTPUT)
     print(OUTPUT)
-    print(SUBMISSION_OUTPUT)
 
 
 if __name__ == "__main__":

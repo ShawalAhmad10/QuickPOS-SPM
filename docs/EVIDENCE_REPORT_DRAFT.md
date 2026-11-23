@@ -31,6 +31,8 @@ The contact form validates required Name/Email/Message fields and email format o
 
 QPOS is a real Scrum project with 32 issues (QPOS-1–QPOS-32): 7 Epics, 15 Stories, 5 Tasks and 5 Subtasks. Final submission still needs readable backlog/epic/two-story screenshots.
 
+As of 23 November 2026, 13 issues are Done overall. Sprint 1 contains 6 Done and 3 In Progress. QPOS-14 through QPOS-18 contain factual pre-sprint implementation and QA comments but remain To Do pending real Sprint 2 reverification.
+
 ## Task 5 — Two sprints — IN PROGRESS
 
 Sprint 1 is active for 23–29 November 2026. Sprint 2 is planned for 30 November–6 December 2026. Neither sprint is falsely reported closed; final summaries remain future work.

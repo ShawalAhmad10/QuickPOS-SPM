@@ -9,8 +9,8 @@
 | 2. Six required sections | 7 | Header, Hero, Features, Pricing, Contact, Footer; internal links checked | **PASS locally**; live demonstration remains |
 | 3. PHP contact validation | 10 | Real POST flows, 303/422 behavior, `tests/run.php` | **PASS locally**; live demonstration remains |
 | 4. Jira setup and backlog | 7 | QPOS Scrum project; 32 issues QPOS-1–QPOS-32; 7 epics, 15 stories, 5 tasks, 5 subtasks | **VERIFIED setup**; final screenshots/two detailed-story evidence remain |
-| 5. Exactly two sprints | 7 | Sprint 1 active 23–29 Nov; Sprint 2 planned 30 Nov–6 Dec | **IN PROGRESS**; both real closures/summaries remain |
-| 6. Bugs, reports, retrospectives | 6 | Genuine engineering issues tracked; no invented retrospective | **PARTIAL**; reports and two completed retros remain future |
+| 5. Exactly two sprints | 7 | Sprint 1 active 23–29 Nov with 6 Done and 3 In Progress; Sprint 2 planned 30 Nov–6 Dec | **IN PROGRESS**; both real closures/summaries remain |
+| 6. Bugs, reports, retrospectives | 6 | 13 issues Done overall; QPOS-14–QPOS-18 have factual pre-sprint evidence comments and remain To Do | **PARTIAL**; reports and two completed retros remain future |
 | 7. Repository and Jira integration | 5 | Public repo; QPOS-23 Development shows an open GitHub PR | **VERIFIED linkage**; final merged baseline remains |
 | 8. Jira-keyed branches and commits | 5 | QPOS-23, QPOS-19 and QPOS-24 branches/commits/PRs | **VERIFIED development evidence** |
 | 9. Four PRs and reviews | 7 | Four genuine open PRs, green CI, preserved AI-assisted technical findings | **BLOCKED**; 0/4 merged and no qualifying independent approval |
