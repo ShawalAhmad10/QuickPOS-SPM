@@ -1,34 +1,33 @@
-# Complete grading traceability matrix (official brief)
+# Complete grading traceability matrix
 
-**Source:** `docs/reference/CS4002_QuickPOS_Semester_Project_BCS9C_Fall2026.pdf`. 100 marks in five parts. Status is **NOT STARTED** unless an actual source, test, screenshot or link is verified.
+**Authoritative source:** `docs/reference/CS4002_QuickPOS_Semester_Project_BCS9C_Fall2026.pdf`
+**Evidence cutoff:** 23 November 2026 (PKT). A passing engineering check does not imply a grade or completion of future Scrum/review events.
 
-| Task | Marks | Requirement / done condition | Required evidence | Owner | Status |
-|---|---:|---|---|---|---|
-| A1: UI & responsive | 23 | Consistent polished customized UI, product mockup, works 375/768/1280 | Desktop full page + representative mobile screenshots | Claude | PASS: LOCAL VERIFIED |
-| A2: Six sections | 7 | Header, Hero, Features, Pricing, Contact, Footer; working links/CTAs | Screenshots + live click-through | Claude | PASS: LOCAL VERIFIED |
-| A3: PHP validation | 10 | Name/Email/Message POST; server required/email validation; errors/success; local docs | Valid/invalid form demonstration, source | Claude | PASS: LOCAL VERIFIED |
-| B4: Jira setup | 7 | New Scrum, 6+ functional Epics, 10+ Stories with description, acceptance, priority, points, assignee, tasks/subtasks | Epics/backlog + 2 detailed stories | Codex | BLOCKED: NO JIRA CONNECTION |
-| B5: Two sprints | 7 | Exactly 23–29 Nov and 30 Nov–6 Dec; goals, realistic estimates, execution and closures | Planning/backlog, active boards, completed sprint summaries | Codex | PARTIAL: PLANS ONLY |
-| B6: Bugs/retro | 6 | Genuine defects only, progress/burndown or equivalent report, retros x2 | Bug history, reports, retros | Codex | NOT VERIFIED: FUTURE EVENTS |
-| C7: Repo & integration | 5 | Shared repo, full source/README, Jira-GitHub linked issue, accessible main | Repo URL, README, linked Jira issue | Codex | PARTIAL: REPO LIVE, JIRA BLOCKED |
-| C8: Branch/commits | 5 | Focused feature/bug branches with issue key, incremental linked commits, real member history | Branches, commits, Jira links | Codex | PARTIAL: REAL BRANCH, NO JIRA KEYS |
-| C9: PR/reviews | 7 | >=4 meaningful merged PRs; under normal team >=2 per student and other member reviews, feedback and CI | Four PR links/screenshots and real reviews | Codex + approved reviewer | BLOCKED: 1 OPEN PR; REVIEW APPROVAL NEEDED |
-| C10: Balanced participation | 3 | Genuine contributions/understanding from approved member(s) | Accurate work division and contributions | Student | BLOCKED: SOLO APPROVAL |
-| D11: CI workflow | 4 | Workflow in `.github/workflows`, feature/bug pushes and main PRs, passing main | YAML + Actions completed run | Codex | PASS: RUN 45043988754 |
-| D12: PHP syntax lint | 3 | Lint all relevant PHP, errors fail job | YAML step, passing logs, optionally failure logs | Codex | PASS: 17 FILES |
-| D13: PHP tests | 5 | >=4 executable cases: empty name, invalid email, empty message, valid; fails on assertions | `tests/`, command + CI logs | Codex | PASS: 13 TESTS |
-| D14: CI fail/fix | 3 | Real failed development run, corrected run, stable main | Failed + passing URLs/screenshots, fix explanation | Codex | NOT VERIFIED: NO FAILURE OBSERVED |
-| E15: ZIP/report | 2 | Source ZIP, PDF/Word evidence report with Parts A–E and Tasks 1–16, URL/access | Final real files, submission channel | Codex | PARTIAL: DRAFT ARTIFACTS IN PROGRESS |
-| E16: Viva | 3 | Live PHP demo, Jira, PR, CI; everyone approved can explain work | Actual live evaluation (no recorded video) | Student | PARTIAL: PREPARATION ONLY |
+| Task | Marks | Verified evidence | Current status / gap |
+|---|---:|---|---|
+| 1. UI and responsive design | 23 | Desktop/mobile screenshots; QA at 375/768/1280 and additional widths | **PASS locally**; evaluator judgment remains |
+| 2. Six required sections | 7 | Header, Hero, Features, Pricing, Contact, Footer; internal links checked | **PASS locally**; live demonstration remains |
+| 3. PHP contact validation | 10 | Real POST flows, 303/422 behavior, `tests/run.php` | **PASS locally**; live demonstration remains |
+| 4. Jira setup and backlog | 7 | QPOS Scrum project; 32 issues QPOS-1–QPOS-32; 7 epics, 15 stories, 5 tasks, 5 subtasks | **VERIFIED setup**; final screenshots/two detailed-story evidence remain |
+| 5. Exactly two sprints | 7 | Sprint 1 active 23–29 Nov; Sprint 2 planned 30 Nov–6 Dec | **IN PROGRESS**; both real closures/summaries remain |
+| 6. Bugs, reports, retrospectives | 6 | Genuine engineering issues tracked; no invented retrospective | **PARTIAL**; reports and two completed retros remain future |
+| 7. Repository and Jira integration | 5 | Public repo; QPOS-23 Development shows an open GitHub PR | **VERIFIED linkage**; final merged baseline remains |
+| 8. Jira-keyed branches and commits | 5 | QPOS-23, QPOS-19 and QPOS-24 branches/commits/PRs | **VERIFIED development evidence** |
+| 9. Four PRs and reviews | 7 | Four genuine open PRs, green CI, preserved AI-assisted technical findings | **BLOCKED**; 0/4 merged and no qualifying independent approval |
+| 10. Balanced participation | 3 | Honest single-person disclosure | **BLOCKED**; instructor-approved solo exception/arrangement absent |
+| 11. CI workflow and triggers | 4 | `.github/workflows/ci.yml`; main run 45043988754 | **PASS** |
+| 12. PHP syntax checks | 3 | Repository-wide discovery; 17/17 tracked PHP files pass | **PASS on PR #4**; merge to main remains |
+| 13. Automated PHP tests | 5 | 13/13 tests; warnings/notices fail; exact 254-character email boundary | **PASS on PR #3/#4**; merge to main remains |
+| 14. Failed→fixed CI | 3 | Failed run 45110283311; corrective run 45110435088; main stayed green | **VERIFIED controlled exercise** |
+| 15. ZIP and evidence report | 2 | Refreshed local PDF/source ZIP and Task 1–16 gap list | **PARTIAL**; identifiers, final merges and LMS submission remain |
+| 16. Live viva | 3 | Preparation notes and demonstration sequence | **PARTIAL**; actual live evaluation remains |
 
-## Totals
-A 40 / B 20 / C 20 / D 15 / E 5 = **100 marks**. Original marking scheme further splits A1 into 15 visual + 8 responsive.
+## Mandatory authorization
 
-## Mandatory academic authorization
-One-person groups permitted only with **prior approval**, with agreed contribution and review arrangements. Two accounts used by one person do **not** satisfy two actual students. Do not self-certify C9/C10 complete without documented exception.
+One-person participation and any alternative review process require prior instructor approval. `ShawalAhmad97` is the same human as `ShawalAhmad10` and cannot provide independent contribution or review evidence. Do not merge or self-certify Tasks 9–10 without the approved arrangement.
 
-## Evidence rules
-- Each completed row needs an actual link/file/screenshot with creation date in `docs/EVIDENCE_CHECKLIST.md`.
-- Never fill screenshots or links from assumptions.
-- Keep failed test runs and real bug resolution links; don't manufacture history.
-- Report unresolved gaps even if the code looks complete.
+## Evidence discipline
+
+- Mark code stories Done only after acceptance criteria are met and the work is integrated.
+- Preserve real failed and corrected runs; never manufacture contributors, reviews, dates or screenshots.
+- Refresh this matrix after each authorized merge and after each sprint closes.

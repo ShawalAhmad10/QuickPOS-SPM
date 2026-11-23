@@ -162,7 +162,7 @@ def on_page(canvas, doc):
     canvas.line(20 * mm, 15 * mm, width - 20 * mm, 15 * mm)
     canvas.setFont("Helvetica", 7.5)
     canvas.setFillColor(MUTED)
-    canvas.drawString(20 * mm, 10 * mm, "QuickPOS evidence report draft - 22 November 2026")
+    canvas.drawString(20 * mm, 10 * mm, "QuickPOS evidence report - verified through 23 November 2026")
     page_text = f"Page {doc.page}"
     canvas.drawString(width - 20 * mm - stringWidth(page_text, "Helvetica", 7.5), 10 * mm, page_text)
     canvas.restoreState()
@@ -177,7 +177,7 @@ def build():
         leftMargin=18 * mm,
         topMargin=18 * mm,
         bottomMargin=22 * mm,
-        title="QuickPOS Evidence Report Draft",
+        title="QuickPOS Evidence Report",
         author="Shawal Ahmad",
         subject="CS4002 QuickPOS Parts A-E and Tasks 1-16",
     )
@@ -188,15 +188,16 @@ def build():
             Spacer(1, 25 * mm),
             p("FAST-NUCES | CS4002 | Fall 2026", "CoverSub"),
             p("QuickPOS", "CoverTitle"),
-            p("Evidence report draft", "CoverTitle"),
+            p("Evidence report", "CoverTitle"),
             Spacer(1, 8 * mm),
             Table(
                 [
                     [p("Student", "SmallQ"), p("Shawal Ahmad", "SmallQ")],
                     [p("Roll number", "SmallQ"), p("Not supplied", "SmallQ")],
                     [p("Approved Group ID", "SmallQ"), p("Not supplied", "SmallQ")],
-                    [p("Prepared", "SmallQ"), p("22 November 2026 (PKT)", "SmallQ")],
+                    [p("Prepared", "SmallQ"), p("23 November 2026 (PKT)", "SmallQ")],
                     [p("Repository", "SmallQ"), p(link("https://github.com/ShawalAhmad10/QuickPOS-SPM"), "SmallQ")],
+                    [p("Jira", "SmallQ"), p(link("https://shawalahmad97.atlassian.net/jira/software/projects/QPOS", "QPOS project"), "SmallQ")],
                     [p("Baseline commit", "SmallQ"), p("fe10bd36b1eb77907a222d8f74d9c28b7aad38f5", "SmallQ")],
                     [p("Passing CI", "SmallQ"), p(link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754", "Actions run 45043988754"), "SmallQ")],
                 ],
@@ -216,7 +217,7 @@ def build():
             ),
             Spacer(1, 10 * mm),
             p(
-                "Pre-submission draft. It records only verified evidence and explicit gaps. It is not a university submission, a grade, proof of future sprint completion, or proof of instructor approval.",
+                "Current pre-submission evidence. It records verified results and explicit gaps; it is not a grade, proof of future sprint completion, proof of instructor approval, or an LMS receipt.",
                 "CoverSub",
             ),
             PageBreak(),
@@ -228,18 +229,18 @@ def build():
         ("1", "UI and responsive design", "PASS", "Real desktop/mobile captures and multi-width browser QA"),
         ("2", "Six required sections", "PASS", "Screenshots 01-07 and link/menu audit"),
         ("3", "PHP validation", "PASS", "HTTP flow, screenshots and 13 tests"),
-        ("4", "Jira backlog", "BLOCKED", "No connected Atlassian workspace"),
-        ("5", "Two sprints", "PARTIAL", "Dates/goals/templates only; future execution"),
-        ("6", "Bugs/reports/retros", "NOT VERIFIED", "Future Jira events"),
-        ("7", "Repository/integration", "PARTIAL", "Public repo live; Jira integration absent"),
-        ("8", "Branches/commits", "PARTIAL", "Truthful baseline and real docs branch; no Jira keys"),
-        ("9", "PRs/reviews", "BLOCKED", "PR 1 is open and green; independent review required"),
+        ("4", "Jira backlog", "PASS", "QPOS has 32 issues: 7 Epics, 15 Stories, 5 Tasks, 5 Subtasks"),
+        ("5", "Two sprints", "PARTIAL", "Sprint 1 active; Sprint 2 planned; closures remain"),
+        ("6", "Bugs/reports/retros", "PARTIAL", "Genuine work only; reports and retros remain"),
+        ("7", "Repository/integration", "PASS", "Public repo and QPOS-23 Development PR link"),
+        ("8", "Branches/commits", "PASS", "QPOS-19, QPOS-23 and QPOS-24 development evidence"),
+        ("9", "PRs/reviews", "BLOCKED", "Four open green PRs; no qualifying approval or merge"),
         ("10", "Participation", "BLOCKED", "Solo exception not confirmed"),
         ("11", "CI workflow", "PASS", "Remote run 45043988754 succeeded"),
-        ("12", "PHP lint", "PASS", "17/17 files"),
-        ("13", "Automated tests", "PASS", "13/13 local and remote"),
-        ("14", "CI fail/fix", "NOT VERIFIED", "No genuine failure observed"),
-        ("15", "Submission package", "PARTIAL", "Draft artifacts; not submitted"),
+        ("12", "PHP lint", "PASS", "17/17 tracked files on open PR"),
+        ("13", "Automated tests", "PASS", "13/13 hardened cases on open PR"),
+        ("14", "CI fail/fix", "PASS", "Failed run 45110283311; fixed run 45110435088"),
+        ("15", "Submission package", "PARTIAL", "Refreshed artifacts; identifiers/submission remain"),
         ("16", "Live viva", "PARTIAL", "Preparation only"),
     ]
     table_data = [[p("Task", "TableHeaderQ"), p("Requirement", "TableHeaderQ"), p("Status", "TableHeaderQ"), p("Evidence / gap", "TableHeaderQ")]]
@@ -285,28 +286,29 @@ def build():
     story.append(PageBreak())
 
     story.extend([p("Part B - Jira Scrum", "Part")])
-    story.extend([p("Task 4 - Jira backlog - BLOCKED", "Task"), p("Seven Epics, fifteen Stories, technical Tasks and Subtasks are prepared in the backlog and import CSV. No Jira keys or URLs exist because the Atlassian integration is not installed/connected and no authorized Jira site is available.")])
-    story.extend([p("Task 5 - Two sprints - PARTIAL", "Task"), p("Sprint 1 is fixed for 23-29 November 2026 and Sprint 2 for 30 November-6 December 2026. Goals, candidate allocation and report templates are ready. Neither future sprint is claimed started or completed.")])
-    story.extend([p("Task 6 - Bugs, progress and retrospectives - NOT VERIFIED", "Task"), p("No Jira bug history, report or retrospective exists. One genuine local copy defect concerning temporary session storage was corrected and recorded. Future retrospective content must come from actual events.")])
+    story.extend([p("Task 4 - Jira backlog - VERIFIED SETUP", "Task"), p(f"The real QPOS Scrum project at {link('https://shawalahmad97.atlassian.net/jira/software/projects/QPOS', 'Jira QPOS')} contains 32 issues (QPOS-1 through QPOS-32): seven Epics, fifteen Stories, five Tasks and five Subtasks. Final submission still needs readable backlog, Epic and two detailed-story screenshots.")])
+    story.extend([p("Task 5 - Two sprints - IN PROGRESS", "Task"), p("Sprint 1 is active for 23-29 November 2026. Sprint 2 is planned for 30 November-6 December 2026. Neither sprint is falsely reported closed; both real summaries remain future evidence.")])
+    story.extend([p("Task 6 - Bugs, progress and retrospectives - PARTIAL", "Task"), p("Only genuine Jira and engineering activity is recorded. Sprint reports and both retrospectives must be completed from actual events after their real closure dates.")])
 
     story.extend([p("Part C - GitHub collaboration and Jira integration", "Part")])
-    story.extend([p("Task 7 - Repository, README and integration - PARTIAL", "Task"), p(f"The public repository is live at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM')}. Baseline commit fe10bd3 contains the complete existing source. Jira development linkage is blocked.")])
-    story.extend([p("Task 8 - Branches and meaningful commits - PARTIAL", "Task"), p("The already-complete uncommitted source was published as one truthful baseline rather than split into fake historical feature commits. A real project-documentation branch records subsequent delivery work. Jira-key naming is unavailable.")])
-    story.extend([p("Task 9 - Pull requests and code review - BLOCKED", "Task"), p(f"A genuine documentation PR is open at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1', 'pull request 1')} and its pull-request CI run 45044977813 passed. It remains unmerged for legitimate review. Four merged PRs and independent review are not claimed. Instructor approval for the solo-group review arrangement is required.")])
+    story.extend([p("Task 7 - Repository, README and integration - VERIFIED", "Task"), p(f"The public repository is live at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM')}. Jira QPOS-23's Development field exposes one open GitHub pull request, verifying real integration.")])
+    story.extend([p("Task 8 - Branches and meaningful commits - VERIFIED", "Task"), p("PR 2 uses QPOS-23, PR 3 uses QPOS-19 and PR 4 uses QPOS-24. The already-complete source remains one truthful baseline rather than fabricated historical commits.")])
+    story.extend([p("Task 9 - Pull requests and code review - BLOCKED", "Task"), p(f"Four genuine pull requests are open: {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1', 'PR 1')}, {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/2', 'PR 2')}, {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/3', 'PR 3')} and {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/4', 'PR 4')}. All latest verified checks pass. AI-assisted technical comments are preserved but are not independent approvals. No PR is merged.")])
     story.extend([p("Task 10 - Balanced participation - BLOCKED", "Task"), p("Only Shawal Ahmad is identified. The secondary account is the same person and cannot satisfy independent contribution or review requirements.")])
     story.append(PageBreak())
 
-    story.extend([p("Part D - Tests and GitHub Actions CI", "Part")])
+    story.extend([Spacer(1, 8 * mm), p("Part D - Tests and GitHub Actions CI", "Part")])
     story.extend([p("Task 11 - Workflow and triggers - PASS", "Task"), p(f"The workflow uses Ubuntu and PHP 8.3 and runs on main, feature branches, bugfix branches and pull requests targeting main. Passing evidence: {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754', 'Actions run 45043988754')}.")])
-    story.extend([p("Task 12 - Automated PHP syntax checks - PASS", "Task"), p("The workflow discovers and lints every PHP file in public, src and tests. All 17 files passed locally and remotely.")])
-    story.extend([p("Task 13 - Automated contact-form tests - PASS", "Task"), p("The dependency-free suite covers the four mandatory cases plus whitespace, missing/non-string fields, length boundaries, normalization and escaping. Result: 13/13 local and remote. The runner exits nonzero when any test fails.")])
-    story.extend([p("Task 14 - CI failure, fix and passing evidence - NOT VERIFIED", "Task"), p("No genuine CI failure occurred. Main is green. No controlled failure was manufactured or misrepresented.")])
+    story.extend([p("Task 12 - Automated PHP syntax checks - PASS ON OPEN PR", "Task"), p("The workflow discovers every tracked PHP path with git ls-files and fails if none exist or any lint fails. All 17 tracked PHP files pass.")])
+    story.extend([p("Task 13 - Automated contact-form tests - PASS ON OPEN PR", "Task"), p("The 13-case dependency-free suite treats warnings/notices as failures and proves exact maximum-length fixtures. Result: 13/13.")])
+    story.extend([p("Task 14 - CI failure, fix and passing evidence - VERIFIED", "Task"), p(f"The explicitly labeled controlled exercise failed truthfully at {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311', 'run 45110283311')} with 13/14 tests and nonzero exit. The corrective commit removed only the sentinel; {link('https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088', 'run 45110435088')} passed. Main stayed green.")])
     ci_table = Table(
         [
             [p("Check", "TableHeaderQ"), p("Result", "TableHeaderQ")],
             [p("Local PHP lint", "SmallQ"), p("PASS - 17 files", "SmallQ")],
             [p("Local tests", "SmallQ"), p("PASS - 13/13", "SmallQ")],
             [p("GitHub Actions main", "SmallQ"), p("PASS - run 45043988754", "SmallQ")],
+            [p("Controlled CI exercise", "SmallQ"), p("FAIL 45110283311 -> PASS 45110435088", "SmallQ")],
             [p("Secret/key scan", "SmallQ"), p("PASS - no findings", "SmallQ")],
         ],
         colWidths=[80 * mm, 80 * mm],
@@ -325,21 +327,20 @@ def build():
     story.extend([Spacer(1, 6 * mm), ci_table, PageBreak()])
 
     story.extend([p("Part E - Submission and live evaluation", "Part")])
-    story.extend([p("Task 15 - Submission package and evidence report - PARTIAL", "Task"), p("A source ZIP, this PDF draft and viva notes are generated locally and integrity-checked. They must be refreshed after Jira, sprint, review and final merge evidence exists. They have not been submitted to the university.")])
+    story.extend([p("Task 15 - Submission package and evidence report - PARTIAL", "Task"), p("The source ZIP, this PDF and viva notes are refreshed from current evidence. Group ID, roll number, final review/merge/sprint evidence and the LMS receipt remain absent.")])
     story.extend([p("Task 16 - Live viva - PARTIAL", "Task"), p("Viva preparation covers the website, validation, security, tests, CI and governance disclosures. The actual live evaluation has not occurred.")])
     story.extend([p("Explicit evidence gaps", "Task")])
     gaps = [
         "Approved Group ID and roll number.",
-        "Connected Jira project, actual keys, boards, reports and GitHub development link.",
-        "Real Sprint 1 and Sprint 2 execution, closures and retrospectives.",
-        "Instructor-approved solo-group and independent-review arrangements.",
-        "Four meaningful merged PRs with legitimate reviews.",
-        "Authentic failed-to-fixed Actions evidence.",
-        "Final refreshed package, submission receipt and live-viva result.",
+        "Readable final Jira backlog, Epic and two-story screenshots.",
+        "Real Sprint 1 and Sprint 2 closures, reports and retrospectives.",
+        "Instructor-approved solo-group and qualifying-review arrangements.",
+        "Four legitimate reviews and authorized merges, then final main CI/Jira verification.",
+        "Final submission receipt and live-viva result.",
     ]
     for item in gaps:
         story.append(p(f"- {item}"))
-    story.extend([Spacer(1, 5 * mm), p("Integrity note", "Task"), p("No Group ID, roll number, Jira key, Jira URL, sprint event, second student, reviewer approval, failed CI event, grade or submission receipt has been invented. This report is deliberately incomplete where authoritative evidence does not yet exist.")])
+    story.extend([Spacer(1, 5 * mm), p("Integrity note", "Task"), p("No Group ID, roll number, sprint closure, second student, reviewer approval, merge, grade or submission receipt has been invented. The controlled failed CI run is labeled accurately and linked. This report stays incomplete wherever authoritative evidence does not yet exist.")])
 
     doc.build(story, onFirstPage=on_page, onLaterPages=on_page)
     print(OUTPUT)

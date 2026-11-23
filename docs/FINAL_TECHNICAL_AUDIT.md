@@ -1,65 +1,62 @@
-# QuickPOS final technical audit draft
+# QuickPOS technical audit and requirement gaps
 
-**Audit date:** 22 November 2026 (PKT)  
+**Audit date:** 23 November 2026 (PKT)
 **Repository:** https://github.com/ShawalAhmad10/QuickPOS-SPM  
-**Baseline commit:** `fe10bd36b1eb77907a222d8f74d9c28b7aad38f5`  
-**Passing CI:** https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754
-
-This is a factual pre-sprint acceptance audit, not a grade and not proof that future Scrum/review events occurred.
+**Jira:** https://shawalahmad97.atlassian.net/jira/software/projects/QPOS
+**Stable main:** `fe10bd36b1eb77907a222d8f74d9c28b7aad38f5` — run https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754
 
 ## Executive result
 
-- Website: locally verified with real screenshots and live HTTP/browser checks.
-- Tests: 13/13 pass; all 17 PHP files lint cleanly.
-- Security: output encoding, input normalization, CSP and hardened short-lived session cookies verified.
-- GitHub: new public repository, truthful single-author baseline and passing main CI verified.
-- Jira: blocked because the Atlassian integration is not installed/connected and no Jira site is available.
-- Review: blocked pending instructor approval for a solo-group review arrangement.
+- Accepted website behavior and appearance were preserved.
+- Local verification passes: 17/17 tracked PHP files lint; 13/13 validation tests pass.
+- Jira QPOS contains 32 issues. Sprint 1 is active; Sprint 2 remains planned.
+- QPOS-23 development linkage is verified. QPOS-19, QPOS-23 and QPOS-24 remain In Progress because their PRs are not merged.
+- Four genuine PRs exist and are prepared in safe order #2 → #3 → #4 → #1. AI-assisted findings are preserved, but none counts as independent approval.
+- Controlled CI evidence is authentic: failed run 45110283311 followed by corrected passing run 45110435088; main remained green.
 
-## Task 1-16 acceptance status
+## Task 1–16 gap list
 
-| Task | Status | Actual evidence | Missing criterion |
-|---|---|---|---|
-| 1. UI and responsive design | PASS | `docs/evidence/website/01-desktop-full-1280.png`, `02-mobile-full-375.png`; QA at 320/375/768/1280/1440 | Final evaluator judgment |
-| 2. Six required sections | PASS | Screenshots 01-07; `docs/WEBSITE_FINAL_QA.md`; 23 internal links checked | Live evaluator demonstration |
-| 3. PHP contact validation | PASS | Invalid/valid screenshots, HTTP 303/422 flow, `tests/run.php` | Final evaluator judgment |
-| 4. Jira setup/backlog | BLOCKED | `docs/JIRA_BACKLOG.md` and import-ready CSV | Connected Jira project, actual keys/assignee |
-| 5. Two sprints | PARTIAL | Fixed-date plans and report templates | Real start/track/close events and summaries |
-| 6. Bugs/progress/retros | NOT VERIFIED | One real local wording defect documented in handoff | Jira bug history, reports, completed retrospectives |
-| 7. Repository/README/integration | PARTIAL | Public repository and updated README | Jira-GitHub development link |
-| 8. Branches/commits | PARTIAL | Baseline commit plus real documentation branch | Jira-key naming/linkage and further authentic commits |
-| 9. Pull requests/reviews | BLOCKED | Open PR https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1 with passing run 45044977813 | Four merged PRs and instructor-approved independent reviews |
-| 10. Balanced participation | BLOCKED | Honest single-person disclosure | Instructor-approved solo exception/contribution arrangement |
-| 11. CI workflow/triggers | PASS | `.github/workflows/ci.yml`; passing run 45043988754 | None for configured workflow; retain future run evidence |
-| 12. PHP syntax checks | PASS | 17 files linted locally and remotely | None |
-| 13. Contact-form tests | PASS | 13/13 locally and remotely; nonzero failure exit implemented | None |
-| 14. CI failure/fix | NOT VERIFIED | Main is green | Authentic failed development run and corrected run |
-| 15. Submission package/report | PARTIAL | Draft ZIP, PDF and evidence gap list generated locally | Group ID/roll number, final links, Jira/sprint/review evidence, LMS submission |
-| 16. Live viva | PARTIAL | `docs/VIVA_PREPARATION.md` | Actual attended live evaluation |
+| Task | Status | Remaining gap |
+|---|---|---|
+| 1. UI/responsive | PASS locally | Final evaluator judgment |
+| 2. Six sections | PASS locally | Live evaluator demonstration |
+| 3. PHP validation | PASS locally | Live evaluator demonstration |
+| 4. Jira backlog | VERIFIED setup | Final readable screenshots and two detailed-story evidence |
+| 5. Two sprints | IN PROGRESS | Complete Sprint 1 and Sprint 2 on their real dates; capture summaries |
+| 6. Bugs/reports/retros | PARTIAL | Genuine Jira defect history as applicable, reports and two retrospectives |
+| 7. Repository/integration | VERIFIED | Preserve linkage after final integration |
+| 8. Branches/commits | VERIFIED | Merge through authorized workflow |
+| 9. PRs/reviews | BLOCKED | Four qualifying reviews and four merges; current count is zero |
+| 10. Participation | BLOCKED | Written solo-group and alternative-review approval |
+| 11. CI workflow | PASS | Verify final main after authorized merges |
+| 12. PHP lint | PASS on open PR | Integrate PR #4 and verify main |
+| 13. PHP tests | PASS on open PR | Integrate PR #3/#4 and verify main |
+| 14. Failed→fixed CI | VERIFIED | Retain screenshots/log links in final report |
+| 15. Report/ZIP | PARTIAL | Add Group ID, roll number, final merge/sprint evidence and LMS receipt |
+| 16. Viva | PARTIAL | Attend and complete live evaluation |
 
 ## Verified commands and results
 
 ```text
-php -l public/src/tests PHP files -> 17/17 PASS
+git ls-files '*.php' -> 17 tracked PHP files
+php -l <each tracked PHP file> -> 17/17 PASS
 php tests/run.php -> 13/13 PASS
-GitHub Actions run 45043988754 -> success
-Secret/key pattern scan -> no findings
-GitHub target identity -> ShawalAhmad10
+controlled failure -> Actions run 45110283311 (13/14, nonzero)
+corrective run -> Actions run 45110435088 (success)
+stable main -> Actions run 45043988754 (success)
 ```
 
-## Integrity disclosures
+## Review and merge readiness
 
-- `ShawalAhmad10` is the primary account. `ShawalAhmad97` is controlled by the same person and is not an independent student or reviewer.
-- The initial source was already complete and uncommitted when Git history began. It was recorded truthfully as one baseline commit; no retroactive feature history was fabricated.
-- No Jira keys, sprint transitions, reviewer approvals, Group ID, roll number or instructor decisions are invented.
-- The report and ZIP are preparation artifacts only and have not been submitted to the university.
+Technical comments are preserved at PR #1 comment 7091562792, PR #2 comment 7091563178, PR #3 comment 7091563575, PR #4 comments 7091564029 and 7091598388. They are AI-assisted findings, not independent human approvals. The refreshed branches deliberately retain history without force-pushing. No PR may merge until the actual approved review arrangement permits it.
 
-## Evidence gaps requiring later action
+## Submission blockers
 
-1. Connect an authorized Atlassian workspace and create/import the actual Scrum project.
-2. Supply approved Group ID and roll number.
-3. Obtain written solo-group and independent-review arrangements.
-4. Execute the two sprints on their real dates and capture boards/reports/retrospectives.
-5. Complete four meaningful PRs with legitimate reviews; do not count the second owned account as independent.
-6. Preserve an authentic CI failure/fix pair if one occurs, or seek permission for a clearly labeled controlled demonstration.
-7. Refresh the evidence PDF and source ZIP after final merges and Jira evidence exist.
+1. Approved Group ID and student roll number.
+2. Written instructor approval for the solo group and the qualifying review arrangement.
+3. Genuine qualifying review of all four PRs, feedback resolution and authorized merges in order.
+4. Final main CI and Jira development/status verification after those merges.
+5. Real Sprint 1 and Sprint 2 closure reports and retrospectives.
+6. Final evidence screenshots and LMS submission receipt.
+
+This audit is an evidence snapshot, not a grade and not a claim that future events have occurred.

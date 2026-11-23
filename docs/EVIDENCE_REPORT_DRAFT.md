@@ -1,106 +1,92 @@
-# QuickPOS evidence report draft
+# QuickPOS evidence report — current draft
 
-**Course:** CS4002 Fundamentals of Software Project Management  
-**Institution:** FAST-NUCES Chiniot-Faisalabad Campus  
-**Student:** Shawal Ahmad  
-**Roll number:** not supplied  
-**Approved Group ID:** not supplied  
-**Prepared:** 22 November 2026  
+**Evidence cutoff:** 23 November 2026 (PKT)
 **Repository:** https://github.com/ShawalAhmad10/QuickPOS-SPM
+**Jira:** https://shawalahmad97.atlassian.net/jira/software/projects/QPOS
+**Student:** Shawal Ahmad — roll number and approved Group ID pending
 
-This pre-submission draft covers Parts A-E and Tasks 1-16 using evidence that actually exists. It is not a university submission and does not claim instructor approval, completed future sprints or independent review.
+## Contributor and review disclosure
 
-## Contributor disclosure
+`ShawalAhmad10` is the primary account. `ShawalAhmad97` is controlled by the same person and is not a second student or independent reviewer. Four PRs are open with passing CI, but no qualifying approval or merge is claimed.
 
-Shawal Ahmad is the only identified student contributor. `ShawalAhmad10` is the primary GitHub account. `ShawalAhmad97` is operated by the same person and is not a second student or independent reviewer. AI tools assisted development and documentation; the student remains responsible for correctness, understanding and the live viva.
+# Part A — Website development
 
-# Part A - QuickPOS website development
+## Task 1 — Product design and responsive UI — PASS locally
 
-## Task 1 - Product design and responsive UI - PASS locally
+The accepted custom QuickPOS PHP landing page was verified at 375px, 768px and 1280px, with additional 320px and 1440px checks. Evidence is under `docs/evidence/website/`.
 
-The custom PHP landing page uses a consistent visual system, an original HTML/CSS/SVG POS dashboard, responsive layouts and accessible interaction states. Real captures exist at desktop and mobile widths. Automated browser checks found no horizontal overflow at 320, 375, 768, 1280 or 1440 pixels.
+## Task 2 — Six required sections — PASS locally
 
-Evidence: `docs/evidence/website/01-desktop-full-1280.png`, `02-mobile-full-375.png`, `03-pricing-1280.png`, `03b-pricing-375.png`, and `docs/WEBSITE_FINAL_QA.md`.
+Header/navigation, Hero, Features, Pricing, Contact and Footer are present. Internal links and CTA destinations were checked without changing the accepted appearance.
 
-## Task 2 - Six required sections - PASS locally
+## Task 3 — PHP validation — PASS locally
 
-Header/Navigation, Hero, Features, Pricing, Contact and Footer are implemented. Navigation, hero CTAs, plan CTAs and footer links have meaningful destinations. The mobile menu updates `aria-expanded`, closes on Escape and restores focus.
+The contact form validates required Name/Email/Message fields and email format on the server. Real error and success flows, normalization and output encoding were checked. The automated suite passes 13/13.
 
-Evidence: website captures 01-07 and the live-link audit in `docs/WEBSITE_FINAL_QA.md`.
+# Part B — Jira Scrum
 
-## Task 3 - PHP contact form and validation - PASS locally
+## Task 4 — Jira backlog — VERIFIED setup
 
-The POST form validates name, email and message on the server. Invalid input returns HTTP 422 with field errors and escaped retained values. Valid input uses a 303 redirect to a one-time confirmation backed by a short-lived hardened session. Nothing is emailed or saved permanently.
+QPOS is a real Scrum project with 32 issues (QPOS-1–QPOS-32): 7 Epics, 15 Stories, 5 Tasks and 5 Subtasks. Final submission still needs readable backlog/epic/two-story screenshots.
 
-Evidence: screenshots 05 and 06, `src/ContactValidator.php`, `public/contact.php`, `public/thank-you.php`, and 13/13 automated tests.
+## Task 5 — Two sprints — IN PROGRESS
 
-# Part B - Jira Scrum planning and execution
+Sprint 1 is active for 23–29 November 2026. Sprint 2 is planned for 30 November–6 December 2026. Neither sprint is falsely reported closed; final summaries remain future work.
 
-## Task 4 - Jira setup, Epics and backlog - BLOCKED
+## Task 6 — Bugs, reports and retrospectives — PARTIAL
 
-Seven Epics, fifteen Stories, technical Tasks and Subtasks are prepared in `docs/JIRA_BACKLOG.md` and `docs/jira/quickpos-backlog-import.csv`. No Jira records or keys exist because the Atlassian integration is not installed/connected and no authorized Jira site is available.
+Only genuine issue activity is recorded. Sprint reports and both retrospectives must be completed after the real sprint events.
 
-## Task 5 - Two sprints - PARTIAL
+# Part C — GitHub collaboration and Jira integration
 
-The required dates, goals and candidate allocations are prepared. Sprint 1 is scheduled for 23-29 November 2026 and Sprint 2 for 30 November-6 December 2026. Neither future sprint is claimed started or completed. See `docs/SPRINT_1_REPORT.md` and `docs/SPRINT_2_REPORT.md`.
+## Task 7 — Repository and integration — VERIFIED
 
-## Task 6 - Bugs, progress and retrospectives - NOT VERIFIED
+The public repository is live. Jira QPOS-23’s Development field exposes one open GitHub pull request, establishing actual integration.
 
-No Jira bug history, reports or completed retrospectives exist. One genuine local defect - inaccurate temporary-session wording - was corrected and recorded in the handoff. Future reports must use actual Jira events.
+## Task 8 — Jira-keyed branches and commits — VERIFIED
 
-# Part C - GitHub collaboration and Jira integration
+PR #2 uses QPOS-23, PR #3 uses QPOS-19 and PR #4 uses QPOS-24. The original completed source was retained as one truthful baseline instead of fabricated historical commits.
 
-## Task 7 - Repository, README and integration - PARTIAL
+## Task 9 — PRs and reviews — BLOCKED
 
-The public repository is live at https://github.com/ShawalAhmad10/QuickPOS-SPM. Baseline commit `fe10bd36b1eb77907a222d8f74d9c28b7aad38f5` contains the complete source, tests, workflow and evidence. Jira integration remains blocked.
+PRs #1–#4 are genuine and green. AI-assisted review comments are labeled accurately and do not count as independent approvals. No PR is merged. The prepared order is #2 → #3 → #4 → refreshed #1.
 
-## Task 8 - Branches and meaningful commits - PARTIAL
+## Task 10 — Participation — BLOCKED
 
-The already-complete uncommitted source was recorded as one truthful baseline rather than fake feature history. A real `feature/project-documentation` branch contains subsequent documentation/delivery work. Jira-key linkage is unavailable.
+An instructor-approved solo-group and alternative-review arrangement has not been evidenced.
 
-## Task 9 - Pull requests and code review - BLOCKED
+# Part D — Tests and CI
 
-A genuine documentation PR is open at https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1 and its pull-request CI run 45044977813 passed. It remains unmerged for legitimate review. Four merged PRs and independent review cannot be claimed. Instructor approval for the one-person arrangement and reviewer is required.
+## Task 11 — Workflow — PASS
 
-## Task 10 - Balanced participation - BLOCKED
+GitHub Actions runs on main, feature/bugfix pushes and pull requests to main using Ubuntu and PHP 8.3. Stable main run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754
 
-Only Shawal Ahmad is identified. The secondary GitHub account is not a separate person. Contribution/review requirements depend on the instructor-approved solo exception.
+## Task 12 — PHP lint — PASS on open PR
 
-# Part D - Automated tests and continuous integration
+PR #4 discovers every tracked `*.php` path and passes 17/17 files.
 
-## Task 11 - Workflow and triggers - PASS
+## Task 13 — PHP validation tests — PASS on open PR
 
-`.github/workflows/ci.yml` uses Ubuntu and PHP 8.3 and runs on main, feature branches, bugfix branches and PRs targeting main. Passing run: https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45043988754
+The dependency-free runner passes 13/13, treats warnings/notices as failures and proves exact maximum-length fixtures.
 
-## Task 12 - Automated syntax checks - PASS
+## Task 14 — Failed→fixed CI — VERIFIED
 
-The workflow discovers and lints every PHP file under `public`, `src` and `tests`. All 17 files passed locally and in GitHub Actions.
+The explicitly labeled controlled exercise failed truthfully at https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311 (13/14, nonzero). Corrective commit removed only the sentinel and https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088 passed. Main stayed green.
 
-## Task 13 - Automated contact tests - PASS
+# Part E — Submission and viva
 
-`tests/run.php` covers the four required cases plus whitespace, missing/non-string fields, exact/over maximum lengths, normalization and escaping. Result: 13/13 locally and remotely. Any failure produces a nonzero exit.
+## Task 15 — ZIP and report — PARTIAL
 
-## Task 14 - Failure, fix and passing evidence - NOT VERIFIED
+The local source ZIP, this Task 1–16 report and the rendered PDF are refreshed from current evidence. Group ID, roll number, final merge/sprint proof and LMS receipt are still absent.
 
-No genuine CI failure has occurred. Main is green. A controlled negative demonstration must not be run or described as accidental without explicit approval.
+## Task 16 — Live viva — PARTIAL
 
-# Part E - Submission and live evaluation
+Demonstration notes exist; the live evaluation has not occurred.
 
-## Task 15 - Submission package and evidence report - PARTIAL
+# Remaining blockers
 
-A source ZIP, evidence-report PDF draft and viva notes are generated locally and verified. They require refresh after Jira, sprint, review and final-merge evidence exists. They have not been submitted to the university.
-
-## Task 16 - Live viva - PARTIAL
-
-Viva preparation exists in `docs/VIVA_PREPARATION.md`. The actual live evaluation has not occurred.
-
-# Explicit evidence gaps
-
-- Approved Group ID and roll number.
-- Connected Jira project, actual issue keys, backlog/board/report screenshots and GitHub development link.
-- Real sprint start/track/closure evidence and retrospectives.
-- Instructor-approved solo-group and independent-review arrangements.
-- Four meaningful merged PRs with legitimate reviews.
-- Authentic failed-to-fixed GitHub Actions pair.
-- Final repository state and refreshed package after all approved merges.
-- University submission receipt and live-viva outcome.
+1. Group ID and roll number.
+2. Written solo-group and qualifying-review approval.
+3. Four legitimate reviews and authorized merges, then final main CI/Jira verification.
+4. Real completion of both sprints, reports and retrospectives.
+5. Final screenshots and LMS submission receipt.
