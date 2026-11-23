@@ -36,5 +36,15 @@ Exact PR boundaries should follow real Jira tasks and coding history; do not ret
 ## GitHub–Jira integration
 Connect the real repo to the new Jira Scrum project using supported integration. Use Jira issue keys in branch, commit, PR. Verify at least one Jira issue shows actual linked development activity. Screenshots/links go into evidence checklist.
 
+### Development-link verification
+For each traceability check, use the same real Jira key in the branch name, commit subject and pull-request title/body. After pushing and opening the PR, wait for GitHub Actions and Jira's GitHub backfill/sync, then record:
+
+- the exact branch, commit, PR and Actions run URLs;
+- which items Jira's Development panel actually displays;
+- the observation time and whether CI passed; and
+- any missing link as `NOT VERIFIED` rather than inferring it from repository connection status.
+
+Keep the PR open until the approved review process is complete. A connected repository or finished backfill alone is not proof that a particular issue has linked development activity.
+
 ## Credential hygiene
 Do not place PATs, `.env` secrets, cookies, tokens or passwords in project files, screenshots or reports. Prefer `gh auth login`/provider OAuth; never ask agents to post credentials in chat. If active account is unexpected, **stop before remote writes**.
