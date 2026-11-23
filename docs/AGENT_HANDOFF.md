@@ -121,3 +121,11 @@ Do not overwrite previous entries; append new entries after this heading. Keep s
 - Jira status and issue keys: unchanged. QPOS-19, QPOS-23 and QPOS-24 remain In Progress because integration is not authorized or complete. Sprint dates/closures were not altered.
 - Open blockers: qualifying course review arrangement and visible approved review evidence remain absent. Same-owner self-review is engineering evidence, not independent approval.
 - Next action + owner: instructor/approved reviewer documents the permitted arrangement and reviews PR #2; after authorization, merge sequentially with CI verification and only then transition eligible Jira issues.
+
+### 2026-11-23 16:30 PKT — Codex — genuine evidence capture milestone
+- Evidence captured: used a fresh isolated headless Chrome profile, not the user's personal Chrome, to retain readable GitHub UI captures for all four open PRs, current PR #1 passing run `45160271783`, controlled failed run `45110283311` and corrected run `45110435088`. Files are under `docs/evidence/github/`.
+- Jira verification: the authorized connector reconfirmed 32 issues: 14 Done, 5 In Progress and 13 To Do. QPOS-32 is Done; QPOS-26 and QPOS-27 are In Progress. The isolated browser did not have an authenticated Jira session, so no Jira UI was simulated or substituted.
+- Capture limitations: the public GitHub review-comment permalink repeatedly rendered an empty lazy-loaded region headlessly; the real comment permalinks remain the source of record. Authenticated Jira backlog, Epic, two Story, Sprint 1 board and Sprint 2 planned-state screenshots, plus a readable real review-discussion capture, remain.
+- Report/files changed: integrated the four verified GitHub captures into the existing evidence report and updated the Task 1–16 evidence documents. Accepted `public/**` and `src/**` were not changed; no new standalone submission document was created.
+- Verification: final report is 13 A4 pages; every page and all four embedded captures were rendered and visually inspected after lossless empty-margin crops. Candidate PHP lint passes 17/17, automated validation passes 13/13 and `git diff --check` passes.
+- Integrity: same-owner technical comments remain findings, not independent approvals. No PR merge, Jira transition, sprint closure, retrospective or instructor approval was invented.

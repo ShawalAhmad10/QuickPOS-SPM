@@ -19,7 +19,8 @@ from reportlab.platypus import (
 )
 
 ROOT = Path(__file__).resolve().parents[1]
-EVIDENCE = ROOT / "docs" / "evidence" / "website"
+WEBSITE_EVIDENCE = ROOT / "docs" / "evidence" / "website"
+GITHUB_EVIDENCE = ROOT / "docs" / "evidence" / "github"
 OUTPUT = ROOT / "output" / "pdf" / "QuickPOS_Evidence_Report.pdf"
 
 NAVY = colors.HexColor("#0F172A")
@@ -129,8 +130,9 @@ def styled_table(rows, widths, header=True, tiny=False):
                  style=TableStyle(commands))
 
 
-def evidence_image(filename, caption, max_width=165 * mm, max_height=175 * mm):
-    path = EVIDENCE / filename
+def evidence_image(filename, caption, max_width=165 * mm, max_height=175 * mm,
+                   evidence_dir=WEBSITE_EVIDENCE):
+    path = evidence_dir / filename
     if not path.exists():
         return [p(f"Evidence image not found: {filename}", "Callout")]
     with PILImage.open(path) as image:
@@ -220,7 +222,7 @@ def build():
             ["Objective", "Verified implementation"],
             ["Product", "Professional QuickPOS landing page with Header, Hero, Features, Pricing, Contact and Footer."],
             ["Backend behavior", "PHP POST validation, field-specific errors and one-time thank-you flow; no database or email delivery."],
-            ["Project management", "QPOS Scrum project with 32 issues, 13 Done overall and two correctly dated sprints."],
+            ["Project management", "QPOS Scrum project with 32 issues, 14 Done overall and two correctly dated sprints."],
             ["Traceability", "QPOS keys appear in real branches, commits and PRs; QPOS-23 shows linked development activity."],
             ["Quality", "Repository-wide PHP lint, 13 executable validation cases and controlled failed-to-fixed CI evidence."],
             ["Delivery", "Verified integration-candidate ZIP, evidence report, viva notes and explicit remaining gaps."],
@@ -280,7 +282,7 @@ def build():
             ["Subtask", "5", "Implementation and verification work below parent items"],
             ["Total", "32", "QPOS-1 through QPOS-32"],
         ], [35 * mm, 20 * mm, 110 * mm]),
-        p("Screenshot-only gap: Jira backlog, Epic and two detailed-story UI screenshots were not captured in this milestone; connector-derived data and live URLs are included instead.", "Callout"),
+        p("Jira UI capture remains outstanding. The isolated browser did not have an authenticated Jira session, so no backlog, Epic, detailed-story or sprint screenshot was substituted or simulated. The connector independently reconfirmed 32 issues: 14 Done, 5 In Progress and 13 To Do.", "Callout"),
         *task("Task 5 - Two Sprints: Planning and Development", "PARTIAL",
               "Exactly two one-week sprints exist with the assignment dates and clear goals. Sprint 1 is active with 6 Done and 3 In Progress; Sprint 2 is future. Neither sprint is prematurely reported complete."),
         styled_table([
@@ -289,13 +291,13 @@ def build():
             ["QPOS Sprint 2", "70 / future", "30 Nov-6 Dec 2026", "Planned with testing, CI and evidence goal"],
         ], [38 * mm, 30 * mm, 35 * mm, 62 * mm]),
         *task("Task 6 - Risk/Bug Tracking, Progress and Retrospectives", "PARTIAL",
-              "The board truthfully shows 13 issues Done overall. QPOS-14 through QPOS-18 contain genuine pre-sprint implementation and QA comments but remain To Do for real Sprint 2 reverification. No fabricated bug is added. Sprint reports, closure evidence and retrospectives remain future because both sprint end dates have not occurred."),
+              "The board truthfully shows 14 issues Done overall. QPOS-32 is Done; QPOS-26 and QPOS-27 are In Progress. QPOS-14 through QPOS-18 contain genuine pre-sprint implementation and QA comments but remain To Do for real Sprint 2 reverification. No fabricated bug is added. Sprint reports, closure evidence and retrospectives remain future because both sprint end dates have not occurred."),
         PageBreak(),
     ]
 
     # Part C
     story += [
-        p("Part C - GitHub Collaboration and Jira Integration", "Section"),
+        p("Part C - GitHub Collaboration", "Section"),
         *task("Task 7 - Repository, README and Jira Integration", "PASS",
               f"The public repository is {link('https://github.com/ShawalAhmad10/QuickPOS-SPM')}. QPOS-23 displays linked GitHub development activity. The README contains purpose, identity, technology, local run, test and CI information. The final main branch is still the stable baseline."),
         *task("Task 8 - Jira-Linked Branches and Meaningful Commits", "PASS",
@@ -305,13 +307,16 @@ def build():
             ["#2", "QPOS-23 Jira development integration", "8024ec2", "45109153077 - PASS"],
             ["#3", "QPOS-19 validation test hardening", "9d17c8c", "45112783653 - PASS"],
             ["#4", "QPOS-24 repository-wide PHP lint", "881232b", "45112936298 - PASS"],
-            ["#1", "Combined documentation/evidence candidate", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1", "live PR"), link("https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1/checks", "current checks")],
+            ["#1", "Combined documentation/evidence candidate", "ca52fdd", "45160271783 - PASS"],
         ], [14 * mm, 72 * mm, 25 * mm, 54 * mm]),
         *task("Task 9 - Pull Requests and Code Review", "BLOCKED",
               "Four meaningful PRs are open, mergeable and green. AI-assisted technical findings are visibly labeled and do not count as independent human approvals. GitHub reports no qualifying reviews; therefore no PR is merged. Prepared order: #2, #3, #4, then #1."),
         *task("Task 10 - Balanced Participation and GitHub Activity", "PARTIAL",
               "This is an Approved Solo Project according to the student; documentary approval is not included in the repository. ShawalAhmad10 and ShawalAhmad97 are two work identities of the same enrolled student, Shawal Ahmad (22F-3303), not separate contributors. The student remains responsible for explaining all work in the viva."),
-        p("Screenshot-only gap: GitHub branch/PR UI screenshots were not captured. The report provides public PR URLs, immutable head SHAs and GitHub CLI/API check results.", "Callout"),
+        p("The following genuine GitHub capture was made in a fresh isolated headless profile on 23 November 2026. It shows all four open PRs and their green check summaries.", "Callout"),
+        *evidence_image("four-open-prs.png", "Figure C1. GitHub Pull requests page showing four open PRs and passing checks.", 150 * mm, 95 * mm, GITHUB_EVIDENCE),
+        Spacer(1, 4 * mm),
+        p("Review-discussion screenshot gap: the public permalink repeatedly rendered an empty lazy-loaded region in the isolated browser. The real same-owner technical comments remain at the public PR permalinks and are not represented as independent approvals.", "Callout"),
         PageBreak(),
     ]
 
@@ -335,7 +340,12 @@ def build():
             ["Corrected CI", "PASS", "Actions run 45110435088"],
             ["PR #1 current checks", "See live result", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1/checks", "PR #1 checks")],
         ], [45 * mm, 42 * mm, 78 * mm]),
-        p("Screenshot-only gap: Actions UI captures were not generated. The public run links and GitHub API results are the authoritative evidence in this candidate report.", "Callout"),
+        *evidence_image("ci-passing-run-45160271783.png", "Figure D1. Current PR #1 CI run 45160271783 completed successfully.", 165 * mm, 108 * mm, GITHUB_EVIDENCE),
+        PageBreak(),
+        p("Part D - Controlled CI Failure and Correction", "Section"),
+        *evidence_image("ci-controlled-failure-45110283311.png", "Figure D2. Controlled negative run 45110283311 failed with exit code 1.", 165 * mm, 108 * mm, GITHUB_EVIDENCE),
+        Spacer(1, 4 * mm),
+        *evidence_image("ci-corrected-45110435088.png", "Figure D3. Corrected run 45110435088 passed after the sentinel was removed.", 165 * mm, 108 * mm, GITHUB_EVIDENCE),
         PageBreak(),
     ]
 
@@ -352,7 +362,7 @@ def build():
         styled_table([
             ["Artifact", "Purpose / state"],
             ["QuickPOS_Source.zip", "Verified integration candidate, not merged main"],
-            ["QuickPOS_Evidence_Report.pdf", "Tasks 1-16 report with genuine website evidence and API-derived tables"],
+            ["QuickPOS_Evidence_Report.pdf", "Tasks 1-16 report with genuine website/GitHub captures and labeled Jira connector data"],
         ], [50 * mm, 105 * mm]),
         p("Academic and identity statement", "Subhead"),
         p("Submitted by Shawal Ahmad, roll number 22F-3303, BCS-9C, to Miss Maham Saleem. The group description is Approved Solo Project based on the student's report. No documentary approval attachment, second enrolled student, independent reviewer, PR merge, sprint closure, grade or LMS receipt is fabricated."),
@@ -367,7 +377,7 @@ def build():
         ["1", "Responsive product UI", "PASS", "Desktop and mobile evidence; multi-width QA complete."],
         ["2", "Six required sections", "PASS", "All sections and CTA/navigation behavior verified."],
         ["3", "PHP validation", "PASS", "Real invalid/valid flows and 13 automated cases."],
-        ["4", "Jira backlog", "PASS", "32 issues with required hierarchy; capture final Jira UI screenshots."],
+        ["4", "Jira backlog", "PASS", "32 issues with required hierarchy; Jira UI screenshots remain."],
         ["5", "Two sprints", "PARTIAL", "Sprint 1 active; Sprint 2 future; close only on real dates."],
         ["6", "Bugs/progress/retros", "PARTIAL", "Complete reports and two retrospectives after sprint closures."],
         ["7", "Repo/README/integration", "PASS", "Public repo and QPOS-23 development link verified."],
@@ -421,13 +431,14 @@ def build():
         ["Corrected passing CI", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088")],
         ["PR #1 current checks", link("https://github.com/ShawalAhmad10/QuickPOS-SPM/pull/1/checks")],
         ["Website evidence", "docs/evidence/website/01 through 07"],
+        ["GitHub UI evidence", "docs/evidence/github/ (four genuine captures)"],
         ["Official requirements", "CS4002 QuickPOS Semester Project brief, 7 pages"],
     ]
     story.append(styled_table(references, [50 * mm, 115 * mm]))
     story += [
         p("Accurate Remaining Gaps", "Section"),
-        p("1. Capture readable Jira backlog, Epic, detailed-story and sprint-board UI screenshots.", "BodyQ"),
-        p("2. Capture readable GitHub PR/branch and Actions UI screenshots if required by the evaluator.", "BodyQ"),
+        p("1. Capture readable Jira backlog, one Epic, two detailed Stories, Sprint 1 board and Sprint 2 planned-state UI screenshots from an authenticated isolated session.", "BodyQ"),
+        p("2. Capture the real GitHub review discussion from a browser session that renders the public comment permalink; do not replace it with a simulated panel.", "BodyQ"),
         p("3. Obtain and retain the actual qualifying PR review arrangement and visible review evidence.", "BodyQ"),
         p("4. Merge PRs #2, #3, #4 and #1 only when authorized; then verify final main CI and Jira linkage.", "BodyQ"),
         p("5. Complete Sprint 1 and Sprint 2 on their real dates, then add sprint reports and retrospectives.", "BodyQ"),

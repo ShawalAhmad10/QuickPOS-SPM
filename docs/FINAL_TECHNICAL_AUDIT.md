@@ -13,7 +13,7 @@
 - Accepted website behavior and appearance are preserved.
 - Candidate verification: 17/17 tracked PHP files lint and 13/13 validation tests pass.
 - Jira QPOS contains 32 issues: 7 Epics, 15 Stories, 5 Tasks and 5 Subtasks.
-- QPOS has 13 issues Done overall. Sprint 1 is active with 9 issues (6 Done, 3 In Progress); Sprint 2 is future.
+- QPOS has 14 issues Done, 5 In Progress and 13 To Do overall. Sprint 1 is active with 9 issues (6 Done, 3 In Progress); Sprint 2 is future.
 - QPOS-23 development linkage is verified. QPOS-19, QPOS-23 and QPOS-24 remain In Progress.
 - PRs #1-#4 are open, mergeable and green. No qualifying review or merge is claimed.
 - Controlled CI evidence is authentic: failed run 45110283311 followed by passing run 45110435088.
@@ -27,15 +27,15 @@
 | 3. PHP validation | PASS | HTTP 422/303 flows and 13 automated cases | Live demonstration |
 | 4. Jira setup/backlog | PASS | QPOS has 32 correctly typed issues | Capture Jira UI screenshots and two detailed stories |
 | 5. Two sprints | PARTIAL | Sprint 1 active; Sprint 2 future with correct dates/goals | Complete both on real dates and retain summaries |
-| 6. Bugs/progress/retrospectives | PARTIAL | 13 issues Done overall; QPOS-14–QPOS-18 contain factual pre-sprint evidence comments | Add real bugs only if found; complete reports and retrospectives |
+| 6. Bugs/progress/retrospectives | PARTIAL | 14 issues Done overall; QPOS-32 Done; QPOS-26/QPOS-27 In Progress | Add real bugs only if found; complete reports and retrospectives |
 | 7. Repository/README/integration | PASS | Public repo, README and QPOS-23 development linkage | Preserve after final integration |
 | 8. Jira-keyed branches/commits | PASS | QPOS-19, QPOS-23 and QPOS-24 evidence | Merge through authorized workflow |
-| 9. PRs/reviews | BLOCKED | Four open green PRs and labeled AI-assisted findings | Obtain qualifying reviews and merge all four |
+| 9. PRs/reviews | BLOCKED | Genuine four-PR capture and labeled same-owner findings | Capture readable real discussion; obtain qualifying reviews and merge all four |
 | 10. Participation | PARTIAL | Same-student dual-account disclosure; solo approval reported | Retain documentary approval/review arrangement if available |
 | 11. CI workflow | PASS | Required triggers, Ubuntu and PHP setup | Verify final main after merges |
 | 12. PHP lint | PASS | 17/17 tracked PHP files | Integrate PR #4 and reverify main |
 | 13. Automated tests | PASS | 13/13 cases; failures propagate | Integrate PR #3/#4 and reverify main |
-| 14. Failed-to-fixed CI | PASS | Runs 45110283311 and 45110435088 | Capture UI screenshots if required |
+| 14. Failed-to-fixed CI | PASS | Runs 45110283311/45110435088 and genuine Actions captures | Preserve in final report |
 | 15. Submission package/report | PARTIAL | Required candidate PDF and source ZIP; audit and viva notes are included in the source archive | Rebuild from merged main and submit through LMS |
 | 16. Live viva | NOT VERIFIED | Preparation notes exist | Attend and complete live evaluation |
 
@@ -50,7 +50,7 @@ Prepared authorized merge order: **#2 -> #3 -> #4 -> #1**.
 1. Qualifying PR review arrangement and visible reviews.
 2. Authorized merges followed by final main CI and Jira linkage verification.
 3. Jira backlog/Epic/story/sprint UI screenshots.
-4. GitHub PR/branch/Actions UI screenshots if required by the evaluator.
+4. Readable real GitHub review-discussion screenshot; PR and Actions UI captures are complete.
 5. Real Sprint 1 and Sprint 2 closure reports and retrospectives.
 6. Documentary solo-project approval if available.
 7. LMS submission receipt and live viva.

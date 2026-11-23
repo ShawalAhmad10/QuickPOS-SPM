@@ -29,9 +29,9 @@ The contact form validates required Name/Email/Message fields and email format o
 
 ## Task 4 — Jira backlog — VERIFIED setup
 
-QPOS is a real Scrum project with 32 issues (QPOS-1–QPOS-32): 7 Epics, 15 Stories, 5 Tasks and 5 Subtasks. Final submission still needs readable backlog/epic/two-story screenshots.
+QPOS is a real Scrum project with 32 issues (QPOS-1–QPOS-32): 7 Epics, 15 Stories, 5 Tasks and 5 Subtasks. An authenticated isolated Jira UI session was unavailable, so readable backlog/Epic/two-story and sprint screenshots still remain; no simulated UI was created.
 
-As of 23 November 2026, 13 issues are Done overall. Sprint 1 contains 6 Done and 3 In Progress. QPOS-14 through QPOS-18 contain factual pre-sprint implementation and QA comments but remain To Do pending real Sprint 2 reverification.
+As of 23 November 2026, 14 issues are Done, 5 In Progress and 13 To Do. QPOS-32 is Done; QPOS-26 and QPOS-27 are In Progress. Sprint 1 contains 6 Done and 3 In Progress. QPOS-14 through QPOS-18 contain factual pre-sprint implementation and QA comments but remain To Do pending real Sprint 2 reverification.
 
 ## Task 5 — Two sprints — IN PROGRESS
 
@@ -53,7 +53,7 @@ PR #2 uses QPOS-23, PR #3 uses QPOS-19 and PR #4 uses QPOS-24. The original comp
 
 ## Task 9 — PRs and reviews — BLOCKED
 
-PRs #1–#4 are genuine and green. AI-assisted review comments are labeled accurately and do not count as independent approvals. No PR is merged. The prepared order is #2 → #3 → #4 → refreshed #1.
+PRs #1–#4 are genuine and green. The report now includes a genuine four-PR capture. Same-owner AI-assisted review comments are labeled accurately and do not count as independent approvals. Their public permalink did not render in the isolated headless browser, so a readable review-discussion capture remains. No PR is merged. The prepared order is #2 → #3 → #4 → refreshed #1.
 
 ## Task 10 — Participation — BLOCKED
 
@@ -75,7 +75,7 @@ The dependency-free runner passes 13/13, treats warnings/notices as failures and
 
 ## Task 14 — Failed→fixed CI — VERIFIED
 
-The explicitly labeled controlled exercise failed truthfully at https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311 (13/14, nonzero). Corrective commit removed only the sentinel and https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088 passed. Main stayed green.
+The explicitly labeled controlled exercise failed truthfully at https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110283311 (13/14, nonzero). Corrective commit removed only the sentinel and https://github.com/ShawalAhmad10/QuickPOS-SPM/actions/runs/45110435088 passed. Genuine Actions captures for the failure, correction and current PR #1 passing run 45160271783 are under `docs/evidence/github/`. Main stayed green.
 
 # Part E — Submission and viva
 
@@ -92,4 +92,4 @@ Demonstration notes exist; the live evaluation has not occurred.
 1. Documentary solo-project approval if available and the qualifying PR-review arrangement.
 2. Four legitimate reviews and authorized merges, then final main CI/Jira verification.
 3. Real completion of both sprints, reports and retrospectives.
-4. Missing Jira/GitHub UI screenshots and the LMS submission receipt.
+4. Authenticated Jira UI captures, a readable real GitHub review-discussion capture and the LMS submission receipt.
