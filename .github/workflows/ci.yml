@@ -36,11 +36,12 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          mapfile -d '' php_files < <(find public src tests -type f -name '*.php' -print0 | sort -z)
+          mapfile -d '' php_files < <(git ls-files -z -- '*.php')
           if (( ${#php_files[@]} == 0 )); then
-            echo 'No PHP files found to lint.' >&2
+            echo 'No tracked PHP files found to lint.' >&2
             exit 1
           fi
+          printf 'Linting %d tracked PHP files.\n' "${#php_files[@]}"
           for file in "${php_files[@]}"; do
             php -l "$file"
           done

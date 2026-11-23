@@ -10,13 +10,13 @@ Test the pure `validateContact(array $input): array` function from `src/ContactV
 | T03 | Name/email valid, message empty | `valid=false`, field error `message` |
 | T04 | All fields valid | `valid=true`, no errors |
 | T05 (extra) | Whitespace-only name/message | required errors |
-| T06 (extra) | Oversized values | length errors if implemented |
+| T06 (extra) | Exact documented limits and one-character-over values | boundary values accepted; oversized values rejected |
 | T07 (extra) | HTML-like input reflected in form | no unintended HTML injection (integration/manual test) |
 
-Run `php tests/run.php`. Assertions must cause **nonzero** exit on failure. Include tests under `tests/` and exact local command in README.
+Run `php tests/run.php`. Assertions and PHP warnings/notices must cause **nonzero** exit on failure. Include tests under `tests/` and exact local command in README. Boundary fixtures must prove their own length so a misleading test name cannot hide partial coverage.
 
 ## PHP syntax lint
-Run `php -l` against **all relevant** `.php` files, including `public/`, `src/`, and `tests/`. CI must fail if any file has a syntax error. Avoid pipes or commands that hide failures.
+Run `php -l` against **all tracked** `.php` files, including `public/`, `src/`, `tests/`, and any future PHP path. CI discovers the repository-wide file list with `git ls-files -z -- '*.php'`, handles unusual filenames safely, reports the discovered count, and must fail if no PHP files exist or any file has a syntax error. Avoid pipes or commands that hide failures.
 
 ## GitHub Actions
 CI triggers: pushes to `feature/**`, `bugfix/**`, and `main`, and `pull_request` targeting `main`. Use Ubuntu runner, checkout and setup PHP. Steps: display PHP version; lint all PHP; run tests. Keep green main and authentic failed→fixed evidence.

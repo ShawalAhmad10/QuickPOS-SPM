@@ -11,6 +11,17 @@ final class TestFailure extends RuntimeException
 {
 }
 
+// Test infrastructure warnings must fail CI instead of being printed and ignored.
+set_error_handler(
+    static function (int $severity, string $message, string $file, int $line): bool {
+        if ((error_reporting() & $severity) === 0) {
+            return false;
+        }
+
+        throw new ErrorException($message, 0, $severity, $file, $line);
+    }
+);
+
 function assertTrue(bool $condition, string $message): void
 {
     if (!$condition) {
@@ -50,6 +61,12 @@ $validInput = [
     'email' => 'ayesha@example.com',
     'message' => 'Please tell me more about QuickPOS.',
 ];
+
+// 64-character local part + three legal DNS labels = the documented 254 limit.
+$maxLengthEmail = str_repeat('a', 64)
+    . '@' . str_repeat('b', 63)
+    . '.' . str_repeat('c', 63)
+    . '.' . str_repeat('d', 61);
 
 $tests = [
     'empty name is rejected' => static function () use ($validInput): void {
@@ -107,10 +124,11 @@ $tests = [
             assertFieldError($result, $field);
         }
     },
-    'maximum lengths are accepted' => static function (): void {
+    'exact documented maximum lengths are accepted' => static function () use ($maxLengthEmail): void {
+        assertSameValue(CONTACT_MAX_EMAIL, contact_strlen($maxLengthEmail), 'Email fixture must exercise the exact limit.');
         $result = validateContact([
             'name' => str_repeat('N', CONTACT_MAX_NAME),
-            'email' => str_repeat('a', 64) . '@' . str_repeat('b', 63) . '.com',
+            'email' => $maxLengthEmail,
             'message' => str_repeat('M', CONTACT_MAX_MESSAGE),
         ]);
         assertTrue($result['valid'], 'Values at documented maximum lengths must be accepted.');
