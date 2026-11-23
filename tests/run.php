@@ -69,9 +69,6 @@ $maxLengthEmail = str_repeat('a', 64)
     . '.' . str_repeat('d', 61);
 
 $tests = [
-    'CONTROLLED CI NEGATIVE: assertion failure is reported' => static function (): void {
-        assertSameValue('pass', 'intentional-failure', 'Controlled negative-test exercise for QPOS-19.');
-    },
     'empty name is rejected' => static function () use ($validInput): void {
         $result = validateContact([...$validInput, 'name' => '']);
         assertFalse($result['valid'], 'An empty name must be invalid.');
